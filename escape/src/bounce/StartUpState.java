@@ -35,16 +35,40 @@ public class StartUpState extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Input input = gameContainer.getInput();
+        boolean down = false, up = false, left = false, right = false;
+        float vy = 0f, vx = 0f;
 
+        eg.player.setVelocity(new Vector(0f, 0f));
         if (input.isKeyDown(Input.KEY_DOWN)) {
-            eg.player.setVelocity(new Vector(0f, 1f));
-        } else if (input.isKeyDown(Input.KEY_UP)) {
-            eg.player.setVelocity(new Vector(0f, -1f));
-        } else if (input.isKeyDown(Input.KEY_LEFT)) {
-            eg.player.setVelocity(new Vector(-1f, 0f));
-        } else if (input.isKeyDown(Input.KEY_RIGHT)) {
-            eg.player.setVelocity(new Vector(1f, 0f));
+            down = true;
         }
+
+        if (input.isKeyDown(Input.KEY_UP)) {
+            up = true;
+        }
+
+        if (input.isKeyDown(Input.KEY_LEFT)) {
+            left = true;
+        }
+
+        if (input.isKeyDown(Input.KEY_RIGHT)) {
+            right = true;
+        }
+
+        if (up) {
+            vy = -1f;
+        }
+        if (down) {
+            vy = 1f;
+        }
+        if (left) {
+            vx = -1f;
+        }
+        if (right) {
+            vx = 1f;
+        }
+
+        eg.player.setVelocity(new Vector(vx, vy));
 
         eg.player.update(i);
 
