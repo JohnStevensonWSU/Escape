@@ -1,9 +1,8 @@
 package bounce;
 
-import jig.Entity;
 import jig.ResourceManager;
 
-public class Player extends Entity {
+public class Player extends Character {
 
     public Player(int x, int y) {
         super(x,y);
