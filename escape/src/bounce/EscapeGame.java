@@ -1,7 +1,5 @@
 package bounce;
 
-import java.util.ArrayList;
-
 import jig.Entity;
 import jig.ResourceManager;
 
