@@ -1,0 +1,4 @@
+#Pending#
+- **[1]** Create player entity and render them on the screen
+
+#Resolved#
