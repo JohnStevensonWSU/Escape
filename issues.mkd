@@ -1,5 +1,5 @@
 #Pending#
-- **[2]** Create entity classes as described in the design document
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
+- **[2]** Create entity classes as described in the design document
