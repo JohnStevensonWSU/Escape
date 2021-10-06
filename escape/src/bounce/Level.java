@@ -79,19 +79,21 @@ public class Level extends BasicGameState {
         }
 
         if (up) {
-            vy = -1f;
+            vy = -0.25f;
         }
         if (down) {
-            vy = 1f;
+            vy = 0.25f;
         }
         if (left) {
-            vx = -1f;
+            vx = -0.25f;
         }
         if (right) {
-            vx = 1f;
+            vx = 0.25f;
         }
 
         eg.player.setVelocity(new Vector(vx, vy));
+
+
 
         eg.player.update(i);
     }

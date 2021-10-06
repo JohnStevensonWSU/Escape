@@ -9,7 +9,7 @@ public class Player extends Character {
     public Player(int x, int y) {
         super(x,y);
         addImageWithBoundingBox(ResourceManager.getImage(EscapeGame.PLAYER_IMG_RSC)
-                .getScaledCopy(32,32));
+                .getScaledCopy(16,16));
         velocity = new Vector(0f, 0f);
     }
 
