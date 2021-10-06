@@ -1,5 +1,6 @@
 package bounce;
 
+import jdk.internal.util.xml.impl.Pair;
 import jig.Vector;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -7,12 +8,15 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.TiledMap;
+
+import java.util.ArrayList;
 
 public class Level extends BasicGameState {
     private int nextState;
     private Floor[][] floor;
-    private TiledMap map;
+    private TileMap map;
     private final boolean debug = false;
 
     @Override
@@ -22,7 +26,7 @@ public class Level extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-        map = new TiledMap("bounce/resource/map/map.tmx");
+        map = new TileMap("bounce/resource/map/map.tmx");
     }
 
     @Override
@@ -59,6 +63,9 @@ public class Level extends BasicGameState {
         Input input = gameContainer.getInput();
         boolean down = false, up = false, left = false, right = false;
         float vy = 0f, vx = 0f;
+        Layer collidables = map.getLayer("Foreground");
+        int px = (int) eg.player.getX() / 16, py = (int) eg.player.getY() / 16;
+        ArrayList<Integer[]> objects = new ArrayList<Integer[]>();
 
         eg.player.setVelocity(new Vector(0f, 0f));
 
@@ -93,7 +100,19 @@ public class Level extends BasicGameState {
 
         eg.player.setVelocity(new Vector(vx, vy));
 
+        for (int row = 0; i < collidables.width; i++) {
+            for (int tile = 0; tile < collidables.height; tile++) {
+                if (collidables.data[px][py][2] != 0) {
+                    objects.add(new Integer[]{px, py});
+                }
+            }
+        }
 
+        if (objects != null) {
+            for (Integer[] tuple : objects) {
+                System.out.println(tuple);
+            }
+        }
 
         eg.player.update(i);
     }
