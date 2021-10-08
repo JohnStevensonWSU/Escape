@@ -1,5 +1,5 @@
 #Pending#
-- **[8]** Add in player sprite
+- **[9]** Add walking animations for up, down, left, and right
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -9,3 +9,4 @@
 - **[5]** Create a level entity as a blueprint for level design
 - **[6]** Handle collision between collidable map elements and player
 - **[7]** Create enemy player and collide with player
+- **[8]** Add in player sprite
