@@ -47,18 +47,12 @@ public class Player extends Character {
         translate(velocity.scale(delta));
     }
 
-    public void checkEnvironment(Collidable environment) {
-        Collision collision = this.collides(environment);
+    public void checkObject(Entity object) {
+        Collision collision = this.collides(object);
         if (collision != null) {
             System.out.println("Collision Detected");
             this.handleCollision(collision);
         }
-//        for (Collidable tile : environment) {
-//            collision = this.collides(tile);
-//            if (collision != null) {
-//                this.handleCollision(collision);
-//            }
-//        }
     }
 
     private void handleCollision(Collision collision) {
