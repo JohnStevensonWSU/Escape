@@ -1,6 +1,7 @@
 package bounce;
 
 import jdk.internal.util.xml.impl.Pair;
+import jig.Collision;
 import jig.Entity;
 import jig.Vector;
 import org.lwjgl.Sys;
@@ -18,9 +19,10 @@ import java.util.ArrayList;
 
 public class Level extends BasicGameState {
     private int nextState;
-    private ArrayList<Collidable> collidables = new ArrayList<Collidable>();
+//    private ArrayList<Collidable> collidables = new ArrayList<Collidable>();
     private TileMap map;
     private final boolean debug = true;
+    private Collidable collidables = new Collidable(0,0);
 
     @Override
     public int getID() {
@@ -38,12 +40,14 @@ public class Level extends BasicGameState {
         Layer  collidables= map.getLayer("Collidable");
         int tile;
 
-        System.out.println(collidables);
+
         for (int i = 0; i < map.getWidth(); i++) {
             for (int j = 0; j < map.getHeight(); j++) {
                 tile = collidables.data[i][j][2];
                 if (tile != 0) {
-                    this.collidables.add(new Collidable(i,j));
+                    this.collidables.add(i, j);
+//                    this.collidables.add(new Collidable(i,j));
+
                 }
             }
         }
@@ -60,11 +64,11 @@ public class Level extends BasicGameState {
         map.render(0, 0, bgIndex);
         map.render(0, 0, fgIndex);
         if (debug) {
-            map.render(0, 0, collidableIndex);
-        }
-
-        for (Collidable tile : this.collidables) {
-            tile.render(graphics);
+//            map.render(0, 0, collidableIndex);
+//            for (Collidable tile : collidables) {
+//                tile.render(graphics);
+//            }
+            collidables.render(graphics);
         }
 
         eg.player.render(graphics);
@@ -74,10 +78,15 @@ public class Level extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Input input = gameContainer.getInput();
-        boolean down = false, up = false, left = false, right = false;
         float vy = 0f, vx = 0f;
         int count = 0;
-        int px = (int) (eg.player.getX() - 8) / 16, py = (int) (eg.player.getY() - 8) / 16;
+        Collision collision;
+        final Vector left = new Vector(-1f, 0f),
+                right = new Vector(1f, 0f),
+                up = new Vector(0f, -1f),
+                down = new Vector(0f, 1f);
+        Vector unit;
+
 //        int[] tl = new int[]{px - 1, py - 1},
 //                tm = new int[]{px, py - 1},
 //                tr = new int[]{px + 1, py - 1},
@@ -91,41 +100,22 @@ public class Level extends BasicGameState {
         eg.player.setVelocity(new Vector(0f, 0f));
 
         if (input.isKeyDown(Input.KEY_DOWN)) {
-            down = true;
+            eg.player.setVelocity(new Vector(0f, 0.1f));
         }
 
         if (input.isKeyDown(Input.KEY_UP)) {
-            up = true;
+            eg.player.setVelocity(new Vector(0f, -0.1f));
         }
 
         if (input.isKeyDown(Input.KEY_LEFT)) {
-            left = true;
+            eg.player.setVelocity(new Vector(-0.1f, 0f));
         }
 
         if (input.isKeyDown(Input.KEY_RIGHT)) {
-            right = true;
+            eg.player.setVelocity(new Vector(0.1f, 0f));
         }
 
-        if (up) {
-            vy = -0.1f;
-        }
-        if (down) {
-            vy = 0.1f;
-        }
-        if (left) {
-            vx = -0.1f;
-        }
-        if (right) {
-            vx = 0.1f;
-        }
-
-        for (Collidable tile : this.collidables) {
-            if (eg.player.collides((Entity) tile) != null) {
-                System.out.println("Collision Detected: " + count++);
-            }
-        }
-
-        eg.player.setVelocity(new Vector(vx, vy));
+        eg.player.checkEnvironment(collidables);
 
         eg.player.update(i);
     }

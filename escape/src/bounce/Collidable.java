@@ -8,6 +8,8 @@ public class Collidable extends Foreground {
     private final float minX;
     private final float maxX;
     private final float minY;
+
+
     private final float maxY;
 
     private final int tileX;
@@ -23,16 +25,39 @@ public class Collidable extends Foreground {
         this.tileX = x;
         this.tileY = y;
 
-        addImageWithBoundingBox(
-                ResourceManager
-                        .getImage(EscapeGame.PLAYER_IMG_RSC)
-                        .getScaledCopy(16,16),
-                new Vector(8f, 8f));
+//        addImageWithBoundingBox(
+//                ResourceManager
+//                        .getImage(EscapeGame.PLAYER_IMG_RSC)
+//                        .getScaledCopy(16,16),
+//                new Vector(8f, 8f));
 
-        setDebug(true);
+        setDebug(false);
     }
 
     public int getTileX() { return this.tileX; }
 
     public int getTileY() { return this.tileY; }
+
+    public float getMinX() {
+        return minX;
+    }
+
+    public float getMaxX() {
+        return maxX;
+    }
+
+    public float getMinY() {
+        return minY;
+    }
+
+    public float getMaxY() {
+        return maxY;
+    }
+
+    public void add(int i, int j) {
+        addImageWithBoundingBox(ResourceManager
+                .getImage(EscapeGame.PLAYER_IMG_RSC)
+                .getScaledCopy(16, 16),
+                new Vector(8 + 16 * i, 8 + 16 * j));
+    }
 }
