@@ -1,5 +1,5 @@
 #Pending#
-- **[6]** Handle collision between collidable map elements and player
+- **[7]** Create enemy which damages player when colliding
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -7,3 +7,4 @@
 - **[3]** Push resources to repository
 - **[4]** Handle user input for moving the Player entity
 - **[5]** Create a level entity as a blueprint for level design
+- **[6]** Handle collision between collidable map elements and player
