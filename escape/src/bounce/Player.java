@@ -11,6 +11,7 @@ public class Player extends Character {
         addImageWithBoundingBox(ResourceManager.getImage(EscapeGame.PLAYER_IMG_RSC)
                 .getScaledCopy(16,16));
         velocity = new Vector(0f, 0f);
+        setDebug(true);
     }
 
     public void setVelocity(final Vector v) { this.velocity = v; }
