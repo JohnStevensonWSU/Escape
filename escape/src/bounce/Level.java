@@ -23,6 +23,7 @@ public class Level extends BasicGameState {
     private TileMap map;
     private final boolean debug = true;
     private Collidable collidables = new Collidable(0,0);
+    private Enemy enemy;
 
     @Override
     public int getID() {
@@ -39,6 +40,7 @@ public class Level extends BasicGameState {
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Layer  collidables= map.getLayer("Collidable");
         int tile;
+        this.enemy = new Enemy(200, 200);
 
 
         for (int i = 0; i < map.getWidth(); i++) {
@@ -70,6 +72,8 @@ public class Level extends BasicGameState {
 //            }
             collidables.render(graphics);
         }
+
+        this.enemy.render(graphics);
 
         eg.player.render(graphics);
     }
@@ -115,7 +119,8 @@ public class Level extends BasicGameState {
             eg.player.setVelocity(new Vector(0.1f, 0f));
         }
 
-        eg.player.checkEnvironment(collidables);
+        eg.player.checkObject(collidables);
+        eg.player.checkObject(enemy);
 
         eg.player.update(i);
     }
