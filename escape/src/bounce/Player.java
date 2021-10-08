@@ -25,10 +25,11 @@ public class Player extends Character {
 
     public Player(int x, int y) {
         super(x,y);
-        addImageWithBoundingBox(ResourceManager.getImage(EscapeGame.PLAYER_IMG_RSC)
+        addImageWithBoundingBox(ResourceManager.getSpriteSheet(EscapeGame.PLAYERBODY_IMG_RSC, 64, 64)
+                .getSubImage(0, 2)
                 .getScaledCopy(16,16));
         velocity = new Vector(0f, 0f);
-        setDebug(false);
+        setDebug(true);
     }
 
     public void setSurroundingTiles(Collidable[] collidables) {
