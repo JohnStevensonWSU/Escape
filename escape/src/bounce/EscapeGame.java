@@ -16,6 +16,8 @@ public class EscapeGame extends StateBasedGame {
 	public static final String TILESET1_IMG_RSC = "bounce/resource/map/tileset1.png";
 	public static final String LEVEL1MAP_IMG_RSC = "bounce/resource/map/map.tmx";
 
+	public static final String PLAYERBODY_IMG_RSC = "bounce/resource/lpc_entry/png/walkcycle/BODY_male.png";
+
 	public static final int STARTUPSTATE = 0;
 	public static final int LEVEL_1 = 1;
 
@@ -48,6 +50,7 @@ public class EscapeGame extends StateBasedGame {
 		ResourceManager.loadImage(PLAYER_IMG_RSC);
 		ResourceManager.loadImage(TILESET_IMG_RSC);
 		ResourceManager.loadImage(TILESET1_IMG_RSC);
+		ResourceManager.loadImage(PLAYERBODY_IMG_RSC);
 
 		player = new Player(100,100);
 	}
