@@ -104,19 +104,15 @@ public class Level extends BasicGameState {
         eg.player.setVelocity(new Vector(0f, 0f));
 
         if (input.isKeyDown(Input.KEY_DOWN)) {
-            eg.player.setVelocity(new Vector(0f, 0.1f));
-        }
-
-        if (input.isKeyDown(Input.KEY_UP)) {
-            eg.player.setVelocity(new Vector(0f, -0.1f));
-        }
-
-        if (input.isKeyDown(Input.KEY_LEFT)) {
-            eg.player.setVelocity(new Vector(-0.1f, 0f));
-        }
-
-        if (input.isKeyDown(Input.KEY_RIGHT)) {
-            eg.player.setVelocity(new Vector(0.1f, 0f));
+            eg.player.moveDown();
+        } else if (input.isKeyDown(Input.KEY_UP)) {
+            eg.player.moveUp();
+        } else if (input.isKeyDown(Input.KEY_LEFT)) {
+            eg.player.moveLeft();
+        } else if (input.isKeyDown(Input.KEY_RIGHT)) {
+            eg.player.moveRight();
+        } else {
+            eg.player.moveStill();
         }
 
         eg.player.checkObject(collidables);

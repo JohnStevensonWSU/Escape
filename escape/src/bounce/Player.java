@@ -1,10 +1,11 @@
 package bounce;
 
-import jig.Collision;
-import jig.Entity;
-import jig.ResourceManager;
-import jig.Vector;
+import jig.*;
 import org.lwjgl.Sys;
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SpriteSheet;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -22,12 +23,20 @@ public class Player extends Character {
     private Vector velocity;
     private Collidable[] surroundingTiles = new Collidable[8];
 
+    private Animation moveLeft, moveRight, moveUp, moveDown;
+    private String currAnimation;
+    private Animation animation;
+    private String currImage;
+    private Image still = ResourceManager.getImage(EscapeGame.PLAYERBODYWALKDOWNSTILL_IMG_RSC);
+    private int keyPressed = 0;
 
     public Player(int x, int y) {
         super(x,y);
-        addImageWithBoundingBox(ResourceManager.getSpriteSheet(EscapeGame.PLAYERBODY_IMG_RSC, 64, 64)
-                .getSubImage(0, 2)
-                .getScaledCopy(16,16));
+        this.addAnimations();
+        this.currAnimation = null;
+        this.currImage = "";
+        this.addShape(new ConvexPolygon(64f,64f),
+                new Vector(8f, 8f));
         velocity = new Vector(0f, 0f);
         setDebug(true);
     }
@@ -36,6 +45,33 @@ public class Player extends Character {
         for (int i = 0; i < 8; i++) {
             surroundingTiles[i] = collidables[i];
         }
+    }
+
+    private void addAnimations() {
+        moveDown = new Animation(
+                new SpriteSheet(ResourceManager.
+                        getImage(EscapeGame.PLAYERBODYWALKDOWN_IMG_RSC),
+                        64,
+                        64),
+                100);
+        moveLeft = new Animation(
+                new SpriteSheet(ResourceManager.
+                        getImage(EscapeGame.PLAYERBODYWALKLEFT_IMG_RSC),
+                        64,
+                        64),
+                100);
+        moveRight = new Animation(
+                new SpriteSheet(ResourceManager.
+                        getImage(EscapeGame.PLAYERBODYWALKRIGHT_IMG_RSC),
+                        64,
+                        64),
+                100);
+        moveUp = new Animation(
+                new SpriteSheet(ResourceManager.
+                        getImage(EscapeGame.PLAYERBODYWALKUP_IMG_RSC),
+                        64,
+                        64),
+                100);
     }
 
     public void setVelocity(final float vx, final float vy) { this.setVelocity(new Vector(vx, vy)); }
@@ -68,4 +104,81 @@ public class Player extends Character {
         }
     }
 
+    public void moveStill() {
+        if (this.currImage == EscapeGame.PLAYERBODYWALKDOWNSTILL_IMG_RSC) {
+            return;
+        }
+        this.currImage = EscapeGame.PLAYERBODYWALKDOWNSTILL_IMG_RSC;
+        this.addImage(ResourceManager.getImage(this.currImage), new Vector(8f,8f));
+        if (this.currAnimation != null) {
+            this.removeAnimation(this.animation);
+            this.currAnimation = null;
+            this.animation = null;
+        }
+    }
+
+    public void moveLeft() {
+        if (this.currImage != null) {
+            this.removeImage(ResourceManager.getImage(this.currImage));
+            this.currImage = null;
+        }
+        if (this.currAnimation != EscapeGame.PLAYERBODYWALKLEFT_IMG_RSC) {
+            if (this.animation != null) {
+                this.removeAnimation(this.animation);
+            }
+            this.currAnimation = EscapeGame.PLAYERBODYWALKLEFT_IMG_RSC;
+            this.animation = new Animation(ResourceManager.getSpriteSheet(this.currAnimation,64,64), 100);
+            this.addAnimation(this.animation, new Vector(8f,8f));
+        }
+
+        this.setVelocity(-0.1f, 0f);
+    }
+
+    public void moveRight() {
+        if (this.currImage != null) {
+            this.removeImage(ResourceManager.getImage(this.currImage));
+            this.currImage = null;
+        }
+        if (this.currAnimation != EscapeGame.PLAYERBODYWALKRIGHT_IMG_RSC) {
+            if (this.animation != null) {
+                this.removeAnimation(this.animation);
+            }
+            this.currAnimation = EscapeGame.PLAYERBODYWALKRIGHT_IMG_RSC;
+            this.animation = new Animation(ResourceManager.getSpriteSheet(this.currAnimation,64,64), 100);
+            this.addAnimation(this.animation, new Vector(8f,8f));
+        }
+        this.setVelocity(0.1f, 0f);
+    }
+
+    public void moveUp() {
+        if (this.currImage != null) {
+            this.removeImage(ResourceManager.getImage(this.currImage));
+            this.currImage = null;
+        }
+        if (this.currAnimation != EscapeGame.PLAYERBODYWALKUP_IMG_RSC) {
+            if (this.animation != null) {
+                this.removeAnimation(this.animation);
+            }
+            this.currAnimation = EscapeGame.PLAYERBODYWALKUP_IMG_RSC;
+            this.animation = new Animation(ResourceManager.getSpriteSheet(this.currAnimation,64,64), 100);
+            this.addAnimation(this.animation, new Vector(8f,8f));
+        }
+        this.setVelocity(0f, -0.1f);
+    }
+
+    public void moveDown() {
+        if (this.currImage != null) {
+            this.removeImage(ResourceManager.getImage(this.currImage));
+            this.currImage = null;
+        }
+        if (this.currAnimation != EscapeGame.PLAYERBODYWALKDOWN_IMG_RSC) {
+                if (this.animation != null) {
+                    this.removeAnimation(this.animation);
+                }
+                this.currAnimation = EscapeGame.PLAYERBODYWALKDOWN_IMG_RSC;
+                this.animation = new Animation(ResourceManager.getSpriteSheet(this.currAnimation,64,64), 100);
+                this.addAnimation(this.animation, new Vector(8f,8f));
+            }
+        this.setVelocity(0f, 0.1f);
+    }
 }

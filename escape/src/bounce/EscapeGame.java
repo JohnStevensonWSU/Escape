@@ -1,5 +1,6 @@
 package bounce;
 
+import com.sun.jndi.dns.ResourceRecord;
 import jig.Entity;
 import jig.ResourceManager;
 
@@ -16,7 +17,12 @@ public class EscapeGame extends StateBasedGame {
 	public static final String TILESET1_IMG_RSC = "bounce/resource/map/tileset1.png";
 	public static final String LEVEL1MAP_IMG_RSC = "bounce/resource/map/map.tmx";
 
-	public static final String PLAYERBODY_IMG_RSC = "bounce/resource/lpc_entry/png/walkcycle/BODY_male.png";
+	public static final String PLAYERBODYWALKDOWN_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_DOWN.png";
+	public static final String PLAYERBODYWALKUP_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_UP.png";
+	public static final String PLAYERBODYWALKLEFT_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_LEFT.png";
+	public static final String PLAYERBODYWALKRIGHT_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_RIGHT.png";
+
+	public static final String PLAYERBODYWALKDOWNSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_DOWN.png";
 
 	public static final int STARTUPSTATE = 0;
 	public static final int LEVEL_1 = 1;
@@ -50,7 +56,11 @@ public class EscapeGame extends StateBasedGame {
 		ResourceManager.loadImage(PLAYER_IMG_RSC);
 		ResourceManager.loadImage(TILESET_IMG_RSC);
 		ResourceManager.loadImage(TILESET1_IMG_RSC);
-		ResourceManager.loadImage(PLAYERBODY_IMG_RSC);
+		ResourceManager.loadImage(PLAYERBODYWALKDOWN_IMG_RSC);
+		ResourceManager.loadImage(PLAYERBODYWALKUP_IMG_RSC);
+		ResourceManager.loadImage(PLAYERBODYWALKLEFT_IMG_RSC);
+		ResourceManager.loadImage(PLAYERBODYWALKRIGHT_IMG_RSC);
+		ResourceManager.loadImage(PLAYERBODYWALKDOWNSTILL_IMG_RSC);
 
 		player = new Player(100,100);
 	}
