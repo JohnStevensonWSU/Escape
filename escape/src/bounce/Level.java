@@ -16,6 +16,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Level extends BasicGameState {
     private int nextState;
@@ -24,6 +25,7 @@ public class Level extends BasicGameState {
     private final boolean debug = true;
     private Collidable collidables = new Collidable(0,0);
     private Enemy enemy;
+    private int[][] djikstras;
 
     @Override
     public int getID() {
@@ -32,16 +34,16 @@ public class Level extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-        map = new TileMap(EscapeGame.LEVEL1MAP_IMG_RSC);
     }
 
     @Override
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException{
+        map = new TileMap(EscapeGame.LEVEL1MAP_IMG_RSC);
+        this.djikstras = new int[50][50];
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Layer  collidables= map.getLayer("Collidable");
         int tile;
         this.enemy = new Enemy(200, 200);
-
 
         for (int i = 0; i < map.getWidth(); i++) {
             for (int j = 0; j < map.getHeight(); j++) {
@@ -82,24 +84,10 @@ public class Level extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Input input = gameContainer.getInput();
-        float vy = 0f, vx = 0f;
-        int count = 0;
-        Collision collision;
-        final Vector left = new Vector(-1f, 0f),
-                right = new Vector(1f, 0f),
-                up = new Vector(0f, -1f),
-                down = new Vector(0f, 1f);
-        Vector unit;
+        int px = (int) (eg.player.getX() - 8) / 16, py = (int) (eg.player.getY() - 8) / 16;
+        this.djikstras[px][py] = -1;
 
-//        int[] tl = new int[]{px - 1, py - 1},
-//                tm = new int[]{px, py - 1},
-//                tr = new int[]{px + 1, py - 1},
-//                ml = new int[]{px - 1, py},
-//                mm = new int[]{px, py},
-//                mr = new int[]{px + 1, py},
-//                bl = new int[]{px - 1, py + 1},
-//                bm = new int[]{px, py + 1},
-//                br = new int[]{px + 1, py + 1};
+
 
         eg.player.setVelocity(new Vector(0f, 0f));
 
