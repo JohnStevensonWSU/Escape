@@ -28,17 +28,18 @@ public class Player extends Character {
     private Animation animation;
     private String currImage;
     private Image still = ResourceManager.getImage(EscapeGame.PLAYERBODYWALKDOWNSTILL_IMG_RSC);
-    private int keyPressed = 0;
+    private int lastPressed;
 
     public Player(int x, int y) {
         super(x,y);
         this.addAnimations();
         this.currAnimation = null;
         this.currImage = "";
-        this.addShape(new ConvexPolygon(64f,64f),
+        this.addShape(new ConvexPolygon(16f,16f),
                 new Vector(8f, 8f));
         velocity = new Vector(0f, 0f);
         setDebug(true);
+        moveStill();
     }
 
     public void setSurroundingTiles(Collidable[] collidables) {
@@ -80,7 +81,29 @@ public class Player extends Character {
 
     public Vector getVelocity() { return this.velocity; }
 
-    public void update(int delta) {
+    public void update(Input input, int delta) {
+        boolean rightPressed = input.isKeyPressed(Input.KEY_RIGHT),
+                leftPressed = input.isKeyPressed(Input.KEY_LEFT),
+                upPressed = input.isKeyPressed(Input.KEY_UP),
+                downPressed = input.isKeyPressed(Input.KEY_DOWN);
+        boolean keyIsDown = input.isKeyDown(Input.KEY_RIGHT)||
+                input.isKeyDown(Input.KEY_LEFT)||
+                input.isKeyDown(Input.KEY_UP)||
+                input.isKeyDown(Input.KEY_DOWN);
+
+        if (rightPressed) {
+            moveRight();
+        } else if (leftPressed) {
+            moveLeft();
+        } else if (upPressed) {
+            moveUp();
+        } else if (downPressed) {
+            moveDown();
+        } else if (keyIsDown) {
+        }else {
+            moveStill();
+        }
+
         translate(velocity.scale(delta));
     }
 
@@ -115,6 +138,7 @@ public class Player extends Character {
             this.currAnimation = null;
             this.animation = null;
         }
+        setVelocity(0f, 0f);
     }
 
     public void moveLeft() {
