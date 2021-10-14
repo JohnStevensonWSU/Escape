@@ -79,23 +79,10 @@ public class Level extends BasicGameState {
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Input input = gameContainer.getInput();
-        int px = (int) (eg.player.getX() - 8) / 16, py = (int) (eg.player.getY() - 8) / 16;
-        eg.player.setVelocity(new Vector(0f, 0f));
-
-        if (input.isKeyDown(Input.KEY_DOWN)) {
-            eg.player.moveDown();
-        } else if (input.isKeyDown(Input.KEY_UP)) {
-            eg.player.moveUp();
-        } else if (input.isKeyDown(Input.KEY_LEFT)) {
-            eg.player.moveLeft();
-        } else if (input.isKeyDown(Input.KEY_RIGHT)) {
-            eg.player.moveRight();
-        } else {
-            eg.player.moveStill();
-        }
+        int px = (int) (eg.player.getX() + 8) / 16, py = (int) (eg.player.getY() + 8) / 16;
 
         for (Collidable[] tileColumn : terrain) {
             for (Collidable tile : tileColumn) {
@@ -108,8 +95,8 @@ public class Level extends BasicGameState {
         }
         eg.player.checkObject(enemy);
 
-        eg.player.update(i);
-        dijkstras.update((int) eg.player.getX() / eg.TileSize, (int) eg.player.getY() / eg.TileSize);
+        eg.player.update(input, delta);
+        dijkstras.update(px,py);
     }
 
     public int getNextState() { return this.nextState; }
