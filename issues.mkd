@@ -1,5 +1,5 @@
 #Pending#
-- **[11]** Change character movement to reflect key presses
+- **[12]** Make enemy find player
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -12,3 +12,4 @@
 - **[8]** Add in player sprite
 - **[9]** Add walking animations for up, down, left, and right
 - **[10]** Implement Djikstra's algorithm for enemy characters
+- **[11]** Change character movement to reflect key presses
