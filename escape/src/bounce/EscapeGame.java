@@ -11,6 +11,8 @@ public class EscapeGame extends StateBasedGame {
 	public final int ScreenWidth;
 	public final int ScreenHeight;
 	public final int TileSize;
+	public final int TileWidth;
+	public final int TileHeight;
 
 	public static final String PLAYER_IMG_RSC = "bounce/resource/player.png";
 	public static final String TILESET_IMG_RSC = "bounce/resource/map/tileset.png";
@@ -44,6 +46,9 @@ public class EscapeGame extends StateBasedGame {
 		ScreenHeight = height;
 		ScreenWidth = width;
 		TileSize = 16;
+		TileWidth = ScreenWidth / TileSize;
+		TileHeight = ScreenHeight / TileSize;
+
 		Entity.setCoarseGrainedCollisionBoundary(Entity.AABB);
 	}
 

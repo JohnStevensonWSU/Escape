@@ -1,10 +1,6 @@
 package bounce;
 
-import jdk.internal.util.xml.impl.Pair;
-import jig.Collision;
-import jig.Entity;
 import jig.Vector;
-import org.lwjgl.Sys;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -12,20 +8,16 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.Layer;
-import org.newdawn.slick.tiled.TiledMap;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Level extends BasicGameState {
     private int nextState;
-//    private ArrayList<Collidable> collidables = new ArrayList<Collidable>();
     private TileMap map;
-    private final boolean debug = true;
-    private Collidable collidables = new Collidable(0,0);
+    private final boolean debug = false;
+    private Collidable[][] terrain;
     private Enemy enemy;
-    private int[][] djikstras;
+    private Dijkstras dijkstras;
+    private int tileWidth;
+    private int tileHeight;
 
     @Override
     public int getID() {
@@ -34,13 +26,16 @@ public class Level extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+
     }
 
     @Override
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException{
-        map = new TileMap(EscapeGame.LEVEL1MAP_IMG_RSC);
-        this.djikstras = new int[50][50];
         EscapeGame eg = (EscapeGame) stateBasedGame;
+        map = new TileMap(EscapeGame.LEVEL1MAP_IMG_RSC);
+        this.tileWidth = map.getWidth();
+        this.tileHeight = map.getHeight();
+        this.terrain = new Collidable[tileWidth][tileHeight];
         Layer  collidables= map.getLayer("Collidable");
         int tile;
         this.enemy = new Enemy(200, 200);
@@ -49,12 +44,11 @@ public class Level extends BasicGameState {
             for (int j = 0; j < map.getHeight(); j++) {
                 tile = collidables.data[i][j][2];
                 if (tile != 0) {
-                    this.collidables.add(i, j);
-//                    this.collidables.add(new Collidable(i,j));
-
+                    this.terrain[i][j] = new Collidable(i, j);
                 }
             }
         }
+        dijkstras = new Dijkstras(tileWidth, tileHeight, (int) eg.player.getX() / eg.TileSize, (int) eg.player.getY() / eg.TileSize, this.terrain);
     }
 
     @Override
@@ -68,11 +62,15 @@ public class Level extends BasicGameState {
         map.render(0, 0, bgIndex);
         map.render(0, 0, fgIndex);
         if (debug) {
-//            map.render(0, 0, collidableIndex);
-//            for (Collidable tile : collidables) {
-//                tile.render(graphics);
-//            }
-            collidables.render(graphics);
+            map.render(0, 0, collidableIndex);
+        }
+
+        for (int i = 0; i < this.tileWidth; i++) {
+            for (int j = 0; j < this.tileHeight; j++) {
+                graphics.drawString(String.valueOf(dijkstras.getValue(i,j)),
+                        i * eg.TileSize,
+                        j * eg.TileSize);
+            }
         }
 
         this.enemy.render(graphics);
@@ -85,10 +83,6 @@ public class Level extends BasicGameState {
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Input input = gameContainer.getInput();
         int px = (int) (eg.player.getX() - 8) / 16, py = (int) (eg.player.getY() - 8) / 16;
-        this.djikstras[px][py] = -1;
-
-
-
         eg.player.setVelocity(new Vector(0f, 0f));
 
         if (input.isKeyDown(Input.KEY_DOWN)) {
@@ -103,10 +97,19 @@ public class Level extends BasicGameState {
             eg.player.moveStill();
         }
 
-        eg.player.checkObject(collidables);
+        for (Collidable[] tileColumn : terrain) {
+            for (Collidable tile : tileColumn) {
+                try {
+                    eg.player.checkObject(tile);
+                } catch (Exception e) {
+                    // no terrain at this tile
+                }
+            }
+        }
         eg.player.checkObject(enemy);
 
         eg.player.update(i);
+        dijkstras.update((int) eg.player.getX() / eg.TileSize, (int) eg.player.getY() / eg.TileSize);
     }
 
     public int getNextState() { return this.nextState; }

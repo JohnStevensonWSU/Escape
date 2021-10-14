@@ -4,6 +4,7 @@ import jig.ResourceManager;
 import jig.Vector;
 
 public class Enemy extends Character {
+    private int timer;
 
     public Enemy (int x, int y) {
         super(x,y);
