@@ -11,15 +11,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class Player extends Character {
-    private final int ul = 0,
-            um = 1,
-            ur = 2,
-            ml = 3,
-            mr = 4,
-            dl = 5,
-            dm = 6,
-            dr = 7;
-
     private Vector velocity;
     private Collidable[] surroundingTiles = new Collidable[8];
 
@@ -28,7 +19,7 @@ public class Player extends Character {
     private Animation animation;
     private String currImage;
     private Image still = ResourceManager.getImage(EscapeGame.PLAYERBODYWALKDOWNSTILL_IMG_RSC);
-    private int lastPressed;
+    private int health;
 
     public Player(int x, int y) {
         super(x,y);
@@ -40,6 +31,7 @@ public class Player extends Character {
         velocity = new Vector(0f, 0f);
         setDebug(true);
         moveStill();
+        health = 1;
     }
 
     public void setSurroundingTiles(Collidable[] collidables) {
@@ -109,9 +101,14 @@ public class Player extends Character {
 
     public void checkObject(Entity object) {
         Collision collision = this.collides(object);
+        Enemy enemy;
         if (collision != null) {
-            System.out.println("Collision Detected");
-            this.handleCollision(collision);
+            try {
+                enemy = (Enemy) object;
+                this.takeDamage(enemy.getDamage());
+            } catch (Exception e) {
+                this.handleCollision(collision);
+            }
         }
     }
 
@@ -204,5 +201,20 @@ public class Player extends Character {
                 this.addAnimation(this.animation, new Vector(8f,8f));
             }
         this.setVelocity(0f, 0.1f);
+    }
+
+    private void takeDamage(int damage) {
+        health -= damage;
+    }
+
+    public boolean getIsDead() {
+        if (health < 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void resetHealth() {
+        health = 1;
     }
 }

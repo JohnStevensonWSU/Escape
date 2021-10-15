@@ -9,6 +9,7 @@ public class Enemy extends Character {
     private float speed = 0.05f;
     private int tileX;
     private int tileY;
+    private int damage;
 
     public Enemy (int x, int y) {
         super(x,y);
@@ -20,6 +21,7 @@ public class Enemy extends Character {
         tileX = 16 * x;
         tileY = 16 * y;
         setDebug(true);
+        damage = 1;
     }
 
     public void update(Dijkstras dijkstras, int delta) {
@@ -60,5 +62,9 @@ public class Enemy extends Character {
 
     public void moveDown() {
         velocity = new Vector(0f, speed);
+    }
+
+    public int getDamage() {
+        return this.damage;
     }
 }

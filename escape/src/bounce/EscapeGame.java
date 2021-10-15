@@ -57,6 +57,7 @@ public class EscapeGame extends StateBasedGame {
 	public void initStatesList(GameContainer container) throws SlickException {
 		addState(new StartUpState());
 		addState(new Level());
+		addState(new GameOverState());
 
 		ResourceManager.loadImage(PLAYER_IMG_RSC);
 		ResourceManager.loadImage(TILESET_IMG_RSC);
