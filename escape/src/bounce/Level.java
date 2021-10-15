@@ -38,7 +38,7 @@ public class Level extends BasicGameState {
         this.terrain = new Collidable[tileWidth][tileHeight];
         Layer  collidables= map.getLayer("Collidable");
         int tile;
-        this.enemy = new Enemy(200, 200);
+        this.enemy = new Enemy(10 * eg.TileSize, 5 * eg.TileSize);
 
         for (int i = 0; i < map.getWidth(); i++) {
             for (int j = 0; j < map.getHeight(); j++) {
@@ -59,19 +59,20 @@ public class Level extends BasicGameState {
         int fgIndex = map.getLayerIndex("Foreground");
         int collidableIndex = map.getLayerIndex("Collidable");
 
-        map.render(0, 0, bgIndex);
-        map.render(0, 0, fgIndex);
-        if (debug) {
-            map.render(0, 0, collidableIndex);
-        }
+        map.render(0,0);
+//        map.render(0, 0, bgIndex);
+//        map.render(0, 0, fgIndex);
+//        if (debug) {
+//            map.render(0, 0, collidableIndex);
+//        }
 
-        for (int i = 0; i < this.tileWidth; i++) {
-            for (int j = 0; j < this.tileHeight; j++) {
-                graphics.drawString(String.valueOf(dijkstras.getValue(i,j)),
-                        i * eg.TileSize,
-                        j * eg.TileSize);
-            }
-        }
+//        for (int i = 0; i < this.tileWidth; i++) {
+//            for (int j = 0; j < this.tileHeight; j++) {
+//                graphics.drawString(String.valueOf(dijkstras.getValue(i,j)),
+//                        i * eg.TileSize,
+//                        j * eg.TileSize);
+//            }
+//        }
 
         this.enemy.render(graphics);
 
@@ -94,8 +95,8 @@ public class Level extends BasicGameState {
             }
         }
         eg.player.checkObject(enemy);
-
         eg.player.update(input, delta);
+        enemy.update(dijkstras, delta);
         dijkstras.update(px,py);
     }
 

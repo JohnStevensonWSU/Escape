@@ -1,6 +1,8 @@
 package bounce;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Dictionary;
 
 public class Dijkstras {
     private int[][] dijkstras;
@@ -16,7 +18,7 @@ public class Dijkstras {
         init(px, py);
     }
 
-    private void check(int x, int y, int value) {
+    private void dijkstras(int x, int y, int value) {
         // tile is outside of map
         if (x < 0 || y < 0 || x > width || y > height) {
             return;
@@ -24,16 +26,16 @@ public class Dijkstras {
 
         // tile contains terrain
         if (collidables[x][y] != null) {
-            dijkstras[x][y] = -1;
+            dijkstras[x][y] = 2147483647;
             return;
         }
 
         if (dijkstras[x][y] == 0 || dijkstras[x][y] > value) {
             dijkstras[x][y] = value;
-            check(x - 1, y, value + 1);
-            check(x + 1, y, value + 1);
-            check(x, y - 1, value + 1);
-            check(x, y + 1, value + 1);
+            dijkstras(x - 1, y, value + 1);
+            dijkstras(x + 1, y, value + 1);
+            dijkstras(x, y - 1, value + 1);
+            dijkstras(x, y + 1, value + 1);
         }
     }
 
@@ -42,7 +44,11 @@ public class Dijkstras {
     }
 
     public int getValue(int x, int y) {
-        return dijkstras[x][y];
+        try {
+            return dijkstras[x][y];
+        } catch (Exception e) {
+            return 2147483647;
+        }
     }
 
     public void setPx(int px) {
@@ -58,10 +64,42 @@ public class Dijkstras {
         dijkstras[px][py] = -1;
         this.px = px;
         this.py = py;
-        check(px - 1, py, 1);
-        check(px + 1, py, 1);
-        check(px, py - 1, 1);
-        check(px, py + 1, 1);
+        dijkstras(px - 1, py, 1);
+        dijkstras(px + 1, py, 1);
+        dijkstras(px, py - 1, 1);
+        dijkstras(px, py + 1, 1);
         dijkstras[px][py] = 0;
+    }
+
+    public String getToPlayer(int x, int y) {
+        int[] dirs = new int[4];
+        int min = 2147483647;
+
+        dirs[0] = getValue(x - 1, y);
+        dirs[1] = getValue(x + 1, y);
+        dirs[2] = getValue(x, y + 1);
+        dirs[3] = getValue(x, y - 1);
+
+        for (int i : dirs) {
+            if (i < min) {
+                min = i;
+            }
+        }
+
+        if (dirs[0] == min) {
+            System.out.println("left");
+            return "left";
+        } else if (dirs[1] == min) {
+            System.out.println("right");
+            return "right";
+        } else if (dirs[2] == min) {
+            System.out.println("down");
+            return "down";
+        } else if (dirs[3] == min) {
+            System.out.println("up");
+            return "up";
+        } else {
+            return "";
+        }
     }
 }
