@@ -35,7 +35,7 @@ public class Player extends Character {
         this.addAnimations();
         this.currAnimation = null;
         this.currImage = "";
-        this.addShape(new ConvexPolygon(16f,16f),
+        this.addShape(new ConvexPolygon(64f,64f),
                 new Vector(8f, 8f));
         velocity = new Vector(0f, 0f);
         setDebug(true);

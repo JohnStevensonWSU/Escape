@@ -14,7 +14,7 @@
  </layer>
  <layer id="3" name="Collidable" width="50" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2XSwrAIAwF7Wm8/w1LF4XipsTk6RNmIDvzmYW/frXWCbs4FTy8wMMLPLzAI1ZXfX8pPVbkfHPxqJ0JD+15Fannus/f2tE5Mr0cPGbWj7nK+yOak+3HPq+bqdKjMmZnqfDYDR54KMADDwV44KEADzwUZN+YLh4PeKz3UP1dFB6Vc0Z7nQoeXuDhBR5e4OHF3/uA2BM38kbRMhAnAAA=
+   H4sIAAAAAAAAA+2WUQ7DMAhDu9P0/jfcf5Wk2NiUdbGUn4oYnhJIz89xnHu1W1EhsRX6Vw6Ut0pRDubMKhXhYO5cRY8yHAofpCZmzyp/pC71fWP8VhxPMLC+dxyR/RFfpje6cKDaHBqO2XxAxfTnNTZzP10caA2ZebWKY+4F66F4P2b5OnFcY5C9zFvGeiD/E3fzfhSLqIojWxO7B+nRt3EoF8PB3i3XebDaHJvDoc3hm7vMLOvEkXnrO3CoPCLfZrmzNajOswOHIvYpDmRf1z6P9jPiX82RmUmor4sjEqvsNSeHIia6tzNH9L1H+srFwfyXMLlG+ZTeCv0ah+LcHPMKkfLfTv1+oLmzcr7nkZwqZf+vRh4zP0f9sxqc3s45V5XHrbdy7NVjfQFP+RCdECcAAA==
   </data>
  </layer>
 </map>
