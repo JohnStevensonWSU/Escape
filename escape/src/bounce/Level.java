@@ -38,7 +38,7 @@ public class Level extends BasicGameState {
         this.terrain = new Collidable[tileWidth][tileHeight];
         Layer  collidables= map.getLayer("Collidable");
         int tile;
-        this.enemy = new Enemy(10 * eg.TileSize, 5 * eg.TileSize);
+        this.enemy = new Enemy(20 * eg.TileSize, 20 * eg.TileSize);
 
         for (int i = 0; i < map.getWidth(); i++) {
             for (int j = 0; j < map.getHeight(); j++) {
@@ -49,6 +49,8 @@ public class Level extends BasicGameState {
             }
         }
         dijkstras = new Dijkstras(tileWidth, tileHeight, (int) eg.player.getX() / eg.TileSize, (int) eg.player.getY() / eg.TileSize, this.terrain);
+        nextState = 2;
+        eg.player.resetHealth();
     }
 
     @Override
@@ -94,10 +96,13 @@ public class Level extends BasicGameState {
                 }
             }
         }
-        eg.player.checkObject(enemy);
-        eg.player.update(input, delta);
-        enemy.update(dijkstras, delta);
         dijkstras.update(px,py);
+        enemy.update(dijkstras, delta);
+        eg.player.update(input, delta);
+        eg.player.checkObject(enemy);
+        if (eg.player.getIsDead()) {
+            stateBasedGame.enterState(nextState);
+        }
     }
 
     public int getNextState() { return this.nextState; }
