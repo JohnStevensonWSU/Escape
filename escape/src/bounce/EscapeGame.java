@@ -25,6 +25,19 @@ public class EscapeGame extends StateBasedGame {
 	public static final String PLAYERBODYWALKRIGHT_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_RIGHT.png";
 
 	public static final String PLAYERBODYWALKDOWNSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_DOWN.png";
+	public static final String PLAYERBODYWALKRIGHTSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_RIGHT.png";
+	public static final String PLAYERBODYWALKUPSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_UP.png";
+	public static final String PLAYERBODYWALKLEFTSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_LEFT.png";
+
+	public static final String ENEMYBODYWALKDOWN_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_DOWN.png";
+	public static final String ENEMYBODYWALKUP_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_UP.png";
+	public static final String ENEMYBODYWALKLEFT_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_LEFT.png";
+	public static final String ENEMYBODYWALKRIGHT_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_RIGHT.png";
+
+	public static final String ENEMYBODYWALKDOWNSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_DOWN.png";
+	public static final String ENEMYBODYWALKRIGHTSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_RIGHT.png";
+	public static final String ENEMYBODYWALKUPSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_UP.png";
+	public static final String ENEMYBODYWALKLEFTSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_LEFT.png";
 
 	public static final int STARTUPSTATE = 0;
 	public static final int LEVEL_1 = 1;
@@ -62,13 +75,26 @@ public class EscapeGame extends StateBasedGame {
 		ResourceManager.loadImage(PLAYER_IMG_RSC);
 		ResourceManager.loadImage(TILESET_IMG_RSC);
 		ResourceManager.loadImage(TILESET1_IMG_RSC);
+
 		ResourceManager.loadImage(PLAYERBODYWALKDOWN_IMG_RSC);
 		ResourceManager.loadImage(PLAYERBODYWALKUP_IMG_RSC);
 		ResourceManager.loadImage(PLAYERBODYWALKLEFT_IMG_RSC);
 		ResourceManager.loadImage(PLAYERBODYWALKRIGHT_IMG_RSC);
 		ResourceManager.loadImage(PLAYERBODYWALKDOWNSTILL_IMG_RSC);
+		ResourceManager.loadImage(PLAYERBODYWALKUPSTILL_IMG_RSC);
+		ResourceManager.loadImage(PLAYERBODYWALKRIGHTSTILL_IMG_RSC);
+		ResourceManager.loadImage(PLAYERBODYWALKLEFTSTILL_IMG_RSC);
 
-		player = new Player(100,100);
+		ResourceManager.loadImage(ENEMYBODYWALKDOWN_IMG_RSC);
+		ResourceManager.loadImage(ENEMYBODYWALKUP_IMG_RSC);
+		ResourceManager.loadImage(ENEMYBODYWALKLEFT_IMG_RSC);
+		ResourceManager.loadImage(ENEMYBODYWALKRIGHT_IMG_RSC);
+		ResourceManager.loadImage(ENEMYBODYWALKDOWNSTILL_IMG_RSC);
+		ResourceManager.loadImage(ENEMYBODYWALKUPSTILL_IMG_RSC);
+		ResourceManager.loadImage(ENEMYBODYWALKRIGHTSTILL_IMG_RSC);
+		ResourceManager.loadImage(ENEMYBODYWALKLEFTSTILL_IMG_RSC);
+
+		player = new Player(100,100,0.1f);
 	}
 	
 	public static void main(String[] args) {
