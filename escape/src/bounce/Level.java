@@ -38,7 +38,7 @@ public class Level extends BasicGameState {
         this.terrain = new Collidable[tileWidth][tileHeight];
         Layer  collidables= map.getLayer("Collidable");
         int tile;
-        this.enemy = new Enemy(20 * eg.TileSize, 20 * eg.TileSize);
+        this.enemy = new Enemy(20 * eg.TileSize, 20 * eg.TileSize, 0.05f);
 
         for (int i = 0; i < map.getWidth(); i++) {
             for (int j = 0; j < map.getHeight(); j++) {

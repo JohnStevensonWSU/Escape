@@ -1,26 +1,25 @@
 package bounce;
 
-import jig.ResourceManager;
-import jig.Vector;
-import org.lwjgl.Sys;
-
 public class Enemy extends Character {
-    private Vector velocity;
-    private float speed = 0.05f;
     private int tileX;
     private int tileY;
     private int damage;
 
-    public Enemy (int x, int y) {
-        super(x,y);
-        this.addImageWithBoundingBox(ResourceManager
-                .getImage(EscapeGame.PLAYER_IMG_RSC)
-                .getScaledCopy(16,16)
-        ,new Vector(-8f, -8f));
-        velocity = new Vector(0f, 0f);
+    public Enemy (int x, int y, float speed) {
+        super(x,y,speed);
+
+        setMoveDown(EscapeGame.ENEMYBODYWALKDOWN_IMG_RSC);
+        setMoveLeft(EscapeGame.ENEMYBODYWALKLEFT_IMG_RSC);
+        setMoveRight(EscapeGame.ENEMYBODYWALKRIGHT_IMG_RSC);
+        setMoveUp(EscapeGame.ENEMYBODYWALKUP_IMG_RSC);
+
+        setStillDown(EscapeGame.ENEMYBODYWALKDOWNSTILL_IMG_RSC);
+        setStillUp(EscapeGame.ENEMYBODYWALKUPSTILL_IMG_RSC);
+        setStillRight(EscapeGame.ENEMYBODYWALKRIGHTSTILL_IMG_RSC);
+        setStillLeft(EscapeGame.ENEMYBODYWALKLEFTSTILL_IMG_RSC);
+
         tileX = 16 * x;
         tileY = 16 * y;
-        setDebug(true);
         damage = 1;
     }
 
@@ -39,29 +38,9 @@ public class Enemy extends Character {
             moveStill();
         }
 
-        translate(velocity.scale(delta));
+        super.update(delta);
         tileX = (int) getX() / 16;
         tileY = (int) getY() / 16;
-    }
-
-    public void moveStill() {
-        velocity = new Vector(0f,0f);
-    }
-
-    public void moveLeft() {
-        velocity = new Vector(-speed, 0f);
-    }
-
-    public void moveRight() {
-        velocity = new Vector(speed, 0f);
-    }
-
-    public void moveUp() {
-        velocity = new Vector(0f, -speed);
-    }
-
-    public void moveDown() {
-        velocity = new Vector(0f, speed);
     }
 
     public int getDamage() {
