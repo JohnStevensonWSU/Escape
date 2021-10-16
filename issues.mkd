@@ -1,5 +1,4 @@
 #Pending#
-- **[14]** Refactor Character class to contain commonalities of Enemy and Player
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -15,3 +14,4 @@
 - **[11]** Change character movement to reflect key presses
 - **[12]** Make enemy find player
 - **[13]** Add player health and enemy damage
+- **[14]** Refactor Character class to contain commonalities of Enemy and Player
