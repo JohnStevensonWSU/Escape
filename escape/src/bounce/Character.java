@@ -9,6 +9,8 @@ import org.newdawn.slick.Animation;
 public class Character extends Movable {
     private float speed = 0.1f;
     private Vector prevPosition;
+    protected boolean isBouncing = false;
+    protected int bounceTimer;
 
     private String moveLeft = EscapeGame.PLAYERBODYWALKLEFT_IMG_RSC,
             moveRight = EscapeGame.PLAYERBODYWALKRIGHT_IMG_RSC,
@@ -24,7 +26,7 @@ public class Character extends Movable {
 
     public Character (int x, int y, float speed) {
         super(x,y,0f,0f);
-        this.addShape(new ConvexPolygon(32f,48f),
+        this.addShape(new ConvexPolygon(31f,47f),
                 new Vector(8f, 13f));
         setVelocity();
         setSpeed(speed);
@@ -49,6 +51,10 @@ public class Character extends Movable {
     //set velocity to vector
     public void setVelocity(Vector velocity) {
         this.velocity = velocity;
+    }
+
+    public Vector getVelocity() {
+        return velocity;
     }
 
     public void setSpeed(float speed) {
@@ -174,9 +180,14 @@ public class Character extends Movable {
     }
 
     protected void handleCollision(Collision collision) {
-        System.out.println("Collision");
         revert();
         moveStill();
     }
 
+    public void bounce(Vector bounceDir, float bounceFactor) {
+        isBouncing = true;
+
+        setVelocity(bounceDir.negate().scale(bounceFactor + 1));
+        bounceTimer = 333;
+    }
 }
