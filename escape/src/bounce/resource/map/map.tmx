@@ -14,7 +14,7 @@
  </layer>
  <layer id="3" name="Collidable" width="50" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3PAQ0AIAzAsKPm/h1io5A1mYDtmdnielUflj4sfVj6sPRh6cPSh6UPSx+WPix9WPqw9GHpw9KHpQ9LH5Y+LH1Y+rD0YenD8utHGV1SHRrVECcAAA==
+   H4sIAAAAAAAAA+3WwQmAQBBD0bWa7b9DCwgIbhwnq//DXIPvIDqPMSYXd7uGI6uvOnZ9N7ufvcrREQ7dwOGHQzdw+OHQjaut6u8djjVHVTh0A4cfDt3A4YdDN3D44dANHH44dONPjurD8exWZziywpEVjqxwZIUjKxxZvfUvy927E7zz89kQJwAA
   </data>
  </layer>
 </map>

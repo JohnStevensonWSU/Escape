@@ -58,20 +58,8 @@ public class Player extends Character {
                 enemy = (Enemy) object;
                 this.takeDamage(enemy.getDamage());
             } catch (Exception e) {
-                this.handleCollision(collision);
+                handleCollision(collision);
             }
-        }
-    }
-
-    private void handleCollision(Collision collision) {
-        this.translate(collision.getMinPenetration());
-        float x = collision.getMinPenetration().getX();
-        float y = collision.getMinPenetration().getY();
-        if (x != 0) {
-//            this.setVelocity(0f, this.velocity.getY());
-        }
-        if (y != 0) {
-//            this.setVelocity(this.velocity.getX(), 0f);
         }
     }
 
@@ -89,4 +77,6 @@ public class Player extends Character {
     public void resetHealth() {
         health = 1;
     }
+
+
 }

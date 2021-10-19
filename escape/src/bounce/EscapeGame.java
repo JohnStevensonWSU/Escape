@@ -61,6 +61,7 @@ public class EscapeGame extends StateBasedGame {
 		TileSize = 16;
 		TileWidth = ScreenWidth / TileSize;
 		TileHeight = ScreenHeight / TileSize;
+		Entity.setDebug(true);
 
 		Entity.setCoarseGrainedCollisionBoundary(Entity.AABB);
 	}
@@ -94,7 +95,7 @@ public class EscapeGame extends StateBasedGame {
 		ResourceManager.loadImage(ENEMYBODYWALKRIGHTSTILL_IMG_RSC);
 		ResourceManager.loadImage(ENEMYBODYWALKLEFTSTILL_IMG_RSC);
 
-		player = new Player(100,100,0.1f);
+		player = new Player(50,50,0.1f);
 	}
 	
 	public static void main(String[] args) {
