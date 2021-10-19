@@ -25,7 +25,7 @@ public class Character extends Movable {
     public Character (int x, int y, float speed) {
         super(x,y,0f,0f);
         this.addShape(new ConvexPolygon(32f,48f),
-                new Vector(8f, 12f));
+                new Vector(8f, 13f));
         setVelocity();
         setSpeed(speed);
         prevPosition = getPosition();

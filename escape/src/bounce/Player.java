@@ -50,7 +50,7 @@ public class Player extends Character {
         super.update(delta);
     }
 
-    public void checkObject(Entity object) {
+    public boolean checkObject(Entity object) {
         Collision collision = this.collides(object);
         Enemy enemy;
         if (collision != null) {
@@ -59,8 +59,11 @@ public class Player extends Character {
                 this.takeDamage(enemy.getDamage());
             } catch (Exception e) {
                 handleCollision(collision);
+            } finally {
+                return true;
             }
         }
+        return false;
     }
 
     private void takeDamage(int damage) {
