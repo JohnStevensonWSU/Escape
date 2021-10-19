@@ -1,5 +1,5 @@
 #Pending#
-- **[15]** Fix entity collision for player
+- **[16]** Create a zone for completing a level
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -16,3 +16,4 @@
 - **[12]** Make enemy find player
 - **[13]** Add player health and enemy damage
 - **[14]** Refactor Character class to contain commonalities of Enemy and Player
+- **[15]** Fix entity collision for player
