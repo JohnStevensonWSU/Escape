@@ -1,5 +1,7 @@
 package bounce;
 
+import jig.Vector;
+
 public class Enemy extends Character {
     private int tileX;
     private int tileY;
@@ -24,6 +26,15 @@ public class Enemy extends Character {
     }
 
     public void update(Dijkstras dijkstras, int delta) {
+        if (isBouncing) {
+            bounceTimer -= delta;
+            if (bounceTimer < 0) {
+                isBouncing = false;
+            }
+            super.update(delta);
+            return;
+        }
+
         String dir = dijkstras.getToPlayer(tileX, tileY);
 
         if (dir == "left") {
@@ -44,6 +55,11 @@ public class Enemy extends Character {
     }
 
     public int getDamage() {
-        return this.damage;
+        if (isBouncing) {
+            return 0;
+        }
+        return damage;
     }
+
+
 }

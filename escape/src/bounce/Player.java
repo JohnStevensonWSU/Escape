@@ -7,6 +7,7 @@ import org.newdawn.slick.Input;
 
 public class Player extends Character {
     private int health;
+    private int initialHealth;
 
     public Player(int x, int y, float speed) {
         super(x,y,speed);
@@ -21,10 +22,21 @@ public class Player extends Character {
         setStillRight(EscapeGame.PLAYERBODYWALKRIGHTSTILL_IMG_RSC);
         setStillLeft(EscapeGame.PLAYERBODYWALKLEFTSTILL_IMG_RSC);
 
-        health = 1;
+        health = 3;
+        initialHealth = health;
     }
 
     public void update(Input input, int delta) {
+        if (isBouncing) {
+            System.out.println("Bouncing");
+            bounceTimer -= delta;
+            if (bounceTimer < 0) {
+                isBouncing = false;
+                setVelocity(0,0);
+            }
+            super.update(delta);
+            return;
+        }
         boolean rightPressed = input.isKeyPressed(Input.KEY_RIGHT),
                 leftPressed = input.isKeyPressed(Input.KEY_LEFT),
                 upPressed = input.isKeyPressed(Input.KEY_UP),
@@ -57,6 +69,9 @@ public class Player extends Character {
             try {
                 enemy = (Enemy) object;
                 this.takeDamage(enemy.getDamage());
+                handleCollision(collision);
+                enemy.bounce(enemy.getVelocity(), 0.05f);
+                this.bounce(enemy.getVelocity(), 0.05f);
             } catch (Exception e) {
                 handleCollision(collision);
             } finally {
@@ -78,7 +93,7 @@ public class Player extends Character {
     }
 
     public void resetHealth() {
-        health = 1;
+        health = initialHealth;
     }
 
 
