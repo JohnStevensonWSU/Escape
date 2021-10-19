@@ -86,6 +86,10 @@ public class Dijkstras {
             }
         }
 
+        if (min > 15) {
+            return "stop";
+        }
+
         if (dirs[0] == min) {
             System.out.println("left");
             return "left";

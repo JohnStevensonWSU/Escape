@@ -37,6 +37,10 @@ public class Enemy extends Character {
 
         String dir = dijkstras.getToPlayer(tileX, tileY);
 
+        if (dir == "stop") {
+            moveStill();
+        }
+
         if (dir == "left") {
             moveLeft();
         } else if (dir == "right") {
