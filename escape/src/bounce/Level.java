@@ -18,6 +18,7 @@ public class Level extends BasicGameState {
     private Dijkstras dijkstras;
     private int tileWidth;
     private int tileHeight;
+    private Collidable escapePoint;
 
     @Override
     public int getID() {
@@ -39,6 +40,7 @@ public class Level extends BasicGameState {
         Layer  collidables= map.getLayer("Collidable");
         int tile;
         this.enemy = new Enemy(20 * eg.TileSize, 20 * eg.TileSize, 0.05f);
+        escapePoint = new Collidable(10,31);
 
         for (int i = 0; i < map.getWidth(); i++) {
             for (int j = 0; j < map.getHeight(); j++) {
@@ -77,7 +79,8 @@ public class Level extends BasicGameState {
 //            }
 //        }
 
-        this.enemy.render(graphics);
+        enemy.render(graphics);
+        escapePoint.render(graphics);
 
         eg.player.render(graphics);
     }
@@ -104,6 +107,10 @@ public class Level extends BasicGameState {
                     // no terrain at this tile
                 }
             }
+        }
+
+        if (eg.player.checkObject(escapePoint)) {
+            stateBasedGame.enterState(nextState);
         }
     }
 
