@@ -1,5 +1,5 @@
 #Pending#
-- **[17]** Adding bounce method to enemy when colliding with player
+- **[18]** Create state change for enemy chasing player
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -18,3 +18,4 @@
 - **[14]** Refactor Character class to contain commonalities of Enemy and Player
 - **[15]** Fix entity collision for player
 - **[16]** Create a zone for completing a level
+- **[17]** Adding bounce method to enemy when colliding with player
