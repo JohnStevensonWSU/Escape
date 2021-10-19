@@ -45,6 +45,7 @@ public class Level extends BasicGameState {
                 tile = collidables.data[i][j][2];
                 if (tile != 0) {
                     this.terrain[i][j] = new Collidable(i, j);
+                    System.out.println("Tile");
                 }
             }
         }
@@ -87,6 +88,14 @@ public class Level extends BasicGameState {
         Input input = gameContainer.getInput();
         int px = (int) (eg.player.getX() + 8) / 16, py = (int) (eg.player.getY() + 8) / 16;
 
+
+        dijkstras.update(px,py);
+        enemy.update(dijkstras, delta);
+        eg.player.update(input, delta);
+        eg.player.checkObject(enemy);
+        if (eg.player.getIsDead()) {
+            stateBasedGame.enterState(nextState);
+        }
         for (Collidable[] tileColumn : terrain) {
             for (Collidable tile : tileColumn) {
                 try {
@@ -95,13 +104,6 @@ public class Level extends BasicGameState {
                     // no terrain at this tile
                 }
             }
-        }
-        dijkstras.update(px,py);
-        enemy.update(dijkstras, delta);
-        eg.player.update(input, delta);
-        eg.player.checkObject(enemy);
-        if (eg.player.getIsDead()) {
-            stateBasedGame.enterState(nextState);
         }
     }
 

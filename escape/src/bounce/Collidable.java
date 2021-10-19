@@ -25,13 +25,12 @@ public class Collidable extends Foreground {
         this.tileX = x;
         this.tileY = y;
 
-//        addImageWithBoundingBox(
-//                ResourceManager
-//                        .getImage(EscapeGame.PLAYER_IMG_RSC)
-//                        .getScaledCopy(16,16),
-//                new Vector(8f, 8f));
+        addImageWithBoundingBox(
+                ResourceManager
+                        .getImage(EscapeGame.PLAYER_IMG_RSC)
+                        .getScaledCopy(16,16),
+                new Vector(8f, 8f));
 
-        setDebug(false);
     }
 
     public int getTileX() { return this.tileX; }

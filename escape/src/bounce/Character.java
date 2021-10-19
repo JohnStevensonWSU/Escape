@@ -1,5 +1,6 @@
 package bounce;
 
+import jig.Collision;
 import jig.ConvexPolygon;
 import jig.ResourceManager;
 import jig.Vector;
@@ -7,6 +8,7 @@ import org.newdawn.slick.Animation;
 
 public class Character extends Movable {
     private float speed = 0.1f;
+    private Vector prevPosition;
 
     private String moveLeft = EscapeGame.PLAYERBODYWALKLEFT_IMG_RSC,
             moveRight = EscapeGame.PLAYERBODYWALKRIGHT_IMG_RSC,
@@ -22,14 +24,15 @@ public class Character extends Movable {
 
     public Character (int x, int y, float speed) {
         super(x,y,0f,0f);
-        this.addShape(new ConvexPolygon(64f,64f),
-                new Vector(8f, 8f));
+        this.addShape(new ConvexPolygon(32f,48f),
+                new Vector(8f, 12f));
         setVelocity();
-        setDebug(true);
         setSpeed(speed);
+        prevPosition = getPosition();
     }
 
     public void update(int delta) {
+        prevPosition = getPosition();
         super.update(delta);
     }
 
@@ -165,4 +168,15 @@ public class Character extends Movable {
     public void setStillDown(String stillDown) {
         this.stillDown = stillDown;
     }
+
+    private void revert() {
+        setPosition(prevPosition);
+    }
+
+    protected void handleCollision(Collision collision) {
+        System.out.println("Collision");
+        revert();
+        moveStill();
+    }
+
 }
