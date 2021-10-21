@@ -1,5 +1,5 @@
 #Pending#
-- **[19]** Refine player movement controls
+- **[20]** Add object layer to tile map to dynamically place objects in the world
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -20,3 +20,4 @@
 - **[16]** Create a zone for completing a level
 - **[17]** Adding bounce method to enemy when colliding with player
 - **[18]** Create state change for enemy chasing player
+- **[19]** Refine player movement controls
