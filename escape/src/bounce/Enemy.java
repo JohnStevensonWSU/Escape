@@ -1,11 +1,14 @@
 package bounce;
 
+import jig.Collision;
+import jig.Entity;
 import jig.Vector;
 
 public class Enemy extends Character {
     private int tileX;
     private int tileY;
     private int damage;
+    private int lastDelta;
 
     public Enemy (int x, int y, float speed) {
         super(x,y,speed);
@@ -26,6 +29,7 @@ public class Enemy extends Character {
     }
 
     public void update(Dijkstras dijkstras, int delta) {
+        lastDelta = delta;
         if (isBouncing) {
             bounceTimer -= delta;
             if (bounceTimer < 0) {
@@ -64,6 +68,5 @@ public class Enemy extends Character {
         }
         return damage;
     }
-
 
 }

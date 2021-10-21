@@ -26,8 +26,8 @@ public class Character extends Movable {
 
     public Character (int x, int y, float speed) {
         super(x,y,0f,0f);
-        this.addShape(new ConvexPolygon(31f,47f),
-                new Vector(8f, 13f));
+        this.addShape(new ConvexPolygon(16f,16f),
+                new Vector(8f, 8f));
         setVelocity();
         setSpeed(speed);
         prevPosition = getPosition();
@@ -175,7 +175,7 @@ public class Character extends Movable {
         this.stillDown = stillDown;
     }
 
-    private void revert() {
+    protected void revert() {
         setPosition(prevPosition);
     }
 
