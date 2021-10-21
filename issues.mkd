@@ -1,6 +1,4 @@
 #Pending#
-- **[22]** Store images in Character entity class
-- **[21]** Fix enemy collision with environment
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
