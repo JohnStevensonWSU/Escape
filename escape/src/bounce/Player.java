@@ -4,10 +4,13 @@ import jig.*;
 
 import org.newdawn.slick.Input;
 
+import java.util.Stack;
+
 
 public class Player extends Character {
     private int health;
     private int initialHealth;
+    private Stack<Integer> keyStack = new Stack<Integer>();
 
     public Player(int x, int y, float speed) {
         super(x,y,speed);
@@ -27,6 +30,7 @@ public class Player extends Character {
     }
 
     public void update(Input input, int delta) {
+        Integer tos;
         if (isBouncing) {
             System.out.println("Bouncing");
             bounceTimer -= delta;
@@ -37,25 +41,41 @@ public class Player extends Character {
             super.update(delta);
             return;
         }
-        boolean rightPressed = input.isKeyPressed(Input.KEY_RIGHT),
-                leftPressed = input.isKeyPressed(Input.KEY_LEFT),
-                upPressed = input.isKeyPressed(Input.KEY_UP),
-                downPressed = input.isKeyPressed(Input.KEY_DOWN);
-        boolean keyIsDown = input.isKeyDown(Input.KEY_RIGHT)||
-                input.isKeyDown(Input.KEY_LEFT)||
-                input.isKeyDown(Input.KEY_UP)||
-                input.isKeyDown(Input.KEY_DOWN);
 
-        if (rightPressed) {
-            moveRight();
-        } else if (leftPressed) {
-            moveLeft();
-        } else if (upPressed) {
-            moveUp();
-        } else if (downPressed) {
-            moveDown();
-        } else if (keyIsDown) {
-        }else {
+
+
+        if (input.isKeyPressed(Input.KEY_DOWN)) {
+            keyStack.push(Input.KEY_DOWN);
+        }
+        if (input.isKeyPressed(Input.KEY_UP)) {
+            keyStack.push(Input.KEY_UP);
+        }
+        if (input.isKeyPressed(Input.KEY_LEFT)) {
+            keyStack.push(Input.KEY_LEFT);
+        }
+        if (input.isKeyPressed(Input.KEY_RIGHT)) {
+            keyStack.push(Input.KEY_RIGHT);
+        }
+
+        for (Object obj : keyStack.toArray()) {
+            Integer i = (Integer) obj;
+            if (!input.isKeyDown(i)) {
+                keyStack.remove(keyStack.indexOf(i));
+            }
+        }
+
+        try {
+            tos = keyStack.peek();
+            if (tos == Input.KEY_DOWN) {
+                moveDown();
+            } else if (tos == Input.KEY_UP) {
+                moveUp();
+            } else if (tos == Input.KEY_RIGHT) {
+                moveRight();
+            } else if (tos == Input.KEY_LEFT) {
+                moveLeft();
+            }
+        } catch (Exception e) {
             moveStill();
         }
 

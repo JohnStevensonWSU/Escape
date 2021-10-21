@@ -12,9 +12,9 @@
    H4sIAAAAAAAAA+3PQQ2AQBDF0DkBKgAVG1Ts4l8NHxedpC+pgG5VtTfvSGe6mnenUf095QeJHyx+sPjB4geLHyx+sPjB4geLHyx+sPjB4geLHyx+sPjB4geLHyx+sPjB4geLHyx+sPwfM63mvekD6XVikBAnAAA=
   </data>
  </layer>
- <layer id="3" name="Collidable" width="50" height="50">
+ <layer id="3" name="Collidable" width="50" height="50" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3PAQ0AIAzAsKPm/h1io5A1mYDtmdnielUflj4sfVj6sPRh6cPSh6UPSx+WPix9WPqw9GHpw9KHpQ9LH5Y+LH1Y+rD0YenD8utHGV1SHRrVECcAAA==
+   H4sIAAAAAAAAA+3WQQ6AIAxEUTwN97+hWxYubNPKN/xJumPAlxB1XmNMBzd/jQ5WdLCig5Xd7/mqb8DuZ+1yEKKDdU909N4rHfHO6Y43PR3xjg4dVevXjg4dVevXjg4dVevXTqfjiz115M/s2FNH/syOPXU89ytHR9xBiQ5WdLCigxUdrOhgpfP/yMnPDTaGr+cQJwAA
   </data>
  </layer>
 </map>
