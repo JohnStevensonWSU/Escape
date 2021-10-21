@@ -70,21 +70,21 @@ public class Level extends BasicGameState {
         int objectIndex = map.getLayerIndex("Objects");
         int collidableIndex = map.getLayerIndex("Collidable");
 
-//        map.render(0,0);
-        map.render(0, 0, bgIndex);
-        map.render(0, 0, fgIndex);
-        map.render(0,0,objectIndex);
+        map.render(0,0);
+//        map.render(0, 0, bgIndex);
+//        map.render(0, 0, fgIndex);
+//        map.render(0,0,objectIndex);
 //        if (debug) {
 //            map.render(0, 0, collidableIndex);
 //        }
 
-//        for (int i = 0; i < this.tileWidth; i++) {
-//            for (int j = 0; j < this.tileHeight; j++) {
-//                graphics.drawString(String.valueOf(dijkstras.getValue(i,j)),
-//                        i * eg.TileSize,
-//                        j * eg.TileSize);
-//            }
-//        }
+        for (int i = 0; i < this.tileWidth; i++) {
+            for (int j = 0; j < this.tileHeight; j++) {
+                graphics.drawString(String.valueOf(dijkstras.getValue(i,j)),
+                        i * eg.TileSize,
+                        j * eg.TileSize);
+            }
+        }
 
         enemy.render(graphics);
 //        escapePoint.render(graphics);

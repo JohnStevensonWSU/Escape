@@ -91,16 +91,12 @@ public class Dijkstras {
         }
 
         if (dirs[0] == min) {
-            System.out.println("left");
             return "left";
         } else if (dirs[1] == min) {
-            System.out.println("right");
             return "right";
         } else if (dirs[2] == min) {
-            System.out.println("down");
             return "down";
         } else if (dirs[3] == min) {
-            System.out.println("up");
             return "up";
         } else {
             return "";
