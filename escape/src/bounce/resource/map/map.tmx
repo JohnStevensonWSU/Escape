@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="6">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="6">
  <tileset firstgid="1" source="tile_set.tsx"/>
  <tileset firstgid="241" source="tile_set1.tsx"/>
  <layer id="1" name="Background" width="50" height="50">
@@ -12,9 +12,14 @@
    H4sIAAAAAAAAA+3PQQ2AQBDF0DkBKgAVG1Ts4l8NHxedpC+pgG5VtTfvSGe6mnenUf095QeJHyx+sPjB4geLHyx+sPjB4geLHyx+sPjB4geLHyx+sPjB4geLHyx+sPjB4geLHyx+sPwfM63mvekD6XVikBAnAAA=
   </data>
  </layer>
- <layer id="3" name="Collidable" width="50" height="50" visible="0">
+ <layer id="3" name="Collidable" width="50" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3WQQ6AIAxEUTwN97+hWxYubNPKN/xJumPAlxB1XmNMBzd/jQ5WdLCig5Xd7/mqb8DuZ+1yEKKDdU909N4rHfHO6Y43PR3xjg4dVevXjg4dVevXjg4dVevXTqfjiz115M/s2FNH/syOPXU89ytHR9xBiQ5WdLCigxUdrOhgpfP/yMnPDTaGr+cQJwAA
+   H4sIAAAAAAAAA+3VMQ6AMAxD0XKa3v+GrIyI2MSNvqWOCX5SVfa11h58nunu8qXzicGRFRxZwZGV7vde9R/o7utwJARH1j3B4b1TOLzfce/vcLyZxaHvUpnFoe9SmcWh71KZxaHvUpnFoe9SmZ3i+GsnDhyOnTjmORwHx9nBkRUcWcGRFRxZwZGVaY4J5waE+yMBECcAAA==
+  </data>
+ </layer>
+ <layer id="8" name="Objects" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3OAQkAAAgDsNu/hFFNIYJsCZb813U9AAAAAAAAAAAAYNsAAnQEzxAnAAA=
   </data>
  </layer>
 </map>

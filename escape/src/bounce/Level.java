@@ -1,6 +1,7 @@
 package bounce;
 
 import jig.Vector;
+import org.lwjgl.Sys;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -37,17 +38,21 @@ public class Level extends BasicGameState {
         this.tileWidth = map.getWidth();
         this.tileHeight = map.getHeight();
         this.terrain = new Collidable[tileWidth][tileHeight];
-        Layer  collidables= map.getLayer("Collidable");
-        int tile;
+        Layer collidables= map.getLayer("Collidable");
+        Layer objects = map.getLayer("Objects");
+        int collidable, object;
         this.enemy = new Enemy(20 * eg.TileSize, 20 * eg.TileSize, 0.05f);
         escapePoint = new Collidable(10,31);
 
         for (int i = 0; i < map.getWidth(); i++) {
             for (int j = 0; j < map.getHeight(); j++) {
-                tile = collidables.data[i][j][2];
-                if (tile != 0) {
+                collidable = collidables.data[i][j][2];
+                object = objects.data[i][j][2];
+                if (object == 416) {
+                    escapePoint = new Collidable(i,j);
+                }
+                if (collidable != 0) {
                     this.terrain[i][j] = new Collidable(i, j);
-                    System.out.println("Tile");
                 }
             }
         }
@@ -62,11 +67,13 @@ public class Level extends BasicGameState {
         graphics.drawString("Level", 10, 30);
         int bgIndex = map.getLayerIndex("Background");
         int fgIndex = map.getLayerIndex("Foreground");
+        int objectIndex = map.getLayerIndex("Objects");
         int collidableIndex = map.getLayerIndex("Collidable");
 
-        map.render(0,0);
-//        map.render(0, 0, bgIndex);
-//        map.render(0, 0, fgIndex);
+//        map.render(0,0);
+        map.render(0, 0, bgIndex);
+        map.render(0, 0, fgIndex);
+        map.render(0,0,objectIndex);
 //        if (debug) {
 //            map.render(0, 0, collidableIndex);
 //        }
@@ -80,7 +87,7 @@ public class Level extends BasicGameState {
 //        }
 
         enemy.render(graphics);
-        escapePoint.render(graphics);
+//        escapePoint.render(graphics);
 
         eg.player.render(graphics);
     }
