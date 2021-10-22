@@ -1,5 +1,6 @@
 package bounce;
 
+import jig.ResourceManager;
 import jig.Vector;
 import org.lwjgl.Sys;
 import org.newdawn.slick.GameContainer;
@@ -41,7 +42,7 @@ public class Level extends BasicGameState {
         Layer collidables= map.getLayer("Collidable");
         Layer objects = map.getLayer("Objects");
         int collidable, object;
-        this.enemy = new Enemy(20 * eg.TileSize, 20 * eg.TileSize, 0.05f);
+        this.enemy = new Enemy(20 * eg.TileSize, 20 * eg.TileSize, 0.1f);
         escapePoint = new Collidable(10,31);
 
         for (int i = 0; i < map.getWidth(); i++) {
@@ -71,28 +72,31 @@ public class Level extends BasicGameState {
         int objectIndex = map.getLayerIndex("Objects");
         int collidableIndex = map.getLayerIndex("Collidable");
 
-        map.render(0,0);
-//        map.render(0, 0, bgIndex);
-//        map.render(0, 0, fgIndex);
-//        map.render(0,0,objectIndex);
-//        if (debug) {
-//            map.render(0, 0, collidableIndex);
-//        }
-
-        for (int i = 0; i < this.tileWidth; i++) {
-            for (int j = 0; j < this.tileHeight; j++) {
-                if (dijkstras.getValue(i,j) != 2147483647) {
-                    graphics.drawString(String.valueOf(dijkstras.getValue(i, j)),
-                            i * eg.TileSize + 8,
-                            j * eg.TileSize + 8);
-                }
-            }
+//        map.render(0,0);
+        map.render(0, 0, bgIndex);
+        map.render(0, 0, fgIndex);
+        map.render(0,0,objectIndex);
+        if (debug) {
+            map.render(0, 0, collidableIndex);
         }
+
+//        for (int i = 0; i < this.tileWidth; i++) {
+//            for (int j = 0; j < this.tileHeight; j++) {
+//                if (dijkstras.getValue(i,j) != 2147483647) {
+//                    graphics.drawString(String.valueOf(dijkstras.getValue(i, j)),
+//                            i * eg.TileSize + 8,
+//                            j * eg.TileSize + 8);
+//                }
+//            }
+//        }
 
         enemy.render(graphics);
 //        escapePoint.render(graphics);
-
         eg.player.render(graphics);
+
+        for (int i = 0; i <= eg.player.getHealth(); i++) {
+            graphics.drawImage(ResourceManager.getImage(EscapeGame.HEART_IMG_RSC), 40 + 32 * i, 900);
+        }
     }
 
     @Override

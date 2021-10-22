@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="32x32_tileset.tsx"/>
+ <tileset firstgid="241" source="tile_set.tsx"/>
  <layer id="1" name="Background" width="30" height="30">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3DAQ0AAAzDoLqaf2cXckhYNVVVVd89BSv/SBAOAAA=
@@ -8,12 +9,12 @@
  </layer>
  <layer id="2" name="Foreground" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3NsREAEBAAwY9QgwBVGFWg/2p8+AXwkruZizeLSP500KPTybhFr04343bxa+Di4uLi4uLi4uJecqe+nN7G5fcfLoBxpBAOAAA=
+   H4sIAAAAAAAAA+2VSwqAMAwFs/J3BBcqHkLUQ/jpKbz/CazgIos+LNU2CAnMpvA6i5CkJqJaiMySJ6Jg3sbSJqJj3oHS1ajeoCotlYD3+qcX8h4/8y6W9Yb3qmTviA14UXYj976aWXYiv/3j8qIs2leGZXfy2z8uL8p2JN9f9cp7n2YJzdFbr88szTAd7vWZJQPT4d6vS73qje3l9zc2/P4q8TkBNB71aRAOAAA=
   </data>
  </layer>
- <layer id="3" name="Collidable" width="30" height="30">
+ <layer id="3" name="Collidable" width="30" height="30" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGHlACgnjEqcmRjafXmDUXvLNIUX/qL0DYy+u/EVqniRG72Cwl1wwVON31N6BtZfc9DxU7aU2GLV31N7hbC898SigHwAAsQ1C3hAOAAA=
+   H4sIAAAAAAAAA2NgGHlAis4Y2V56gVF7yTeHFP2j9g6MvbjyF6l5khi9I9lecsFQTVej9qKaS2q6GrWXNHupDUbtHbWXHvbSE48C+gEA9TWFohAOAAA=
   </data>
  </layer>
  <layer id="4" name="Objects" width="30" height="30">
