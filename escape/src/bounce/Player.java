@@ -26,7 +26,7 @@ public class Player extends Character {
         setStillRight(EscapeGame.PLAYERBODYWALKRIGHTSTILL_IMG_RSC);
         setStillLeft(EscapeGame.PLAYERBODYWALKLEFTSTILL_IMG_RSC);
 
-        health = 3;
+        health = 2;
         initialHealth = health;
     }
 
@@ -35,7 +35,7 @@ public class Player extends Character {
     }
 
     public void update(Input input, int delta) {
-        int x = (int) (this.getX() - 16) / 32, y = (int) (this.getY() - 16) / 32;
+        int x = (int) this.getX() / 32, y = (int) this.getY() / 32;
         Integer tos;
         if (isBouncing) {
             System.out.println("Bouncing");
@@ -222,5 +222,8 @@ public class Player extends Character {
         health = initialHealth;
     }
 
+    public int getHealth() {
+        return health;
+    }
 
 }

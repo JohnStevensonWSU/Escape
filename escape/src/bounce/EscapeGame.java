@@ -38,6 +38,8 @@ public class EscapeGame extends StateBasedGame {
 	public static final String ENEMYBODYWALKUPSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_UP_32.png";
 	public static final String ENEMYBODYWALKLEFTSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_LEFT_32.png";
 
+	public static final String HEART_IMG_RSC = "bounce/resource/Heart.png";
+
 	public static final int STARTUPSTATE = 0;
 	public static final int LEVEL_1 = 1;
 
@@ -60,9 +62,8 @@ public class EscapeGame extends StateBasedGame {
 		TileSize = 32;
 		TileWidth = ScreenWidth / TileSize;
 		TileHeight = ScreenHeight / TileSize;
-		Entity.setDebug(true);
-
 		Entity.setCoarseGrainedCollisionBoundary(Entity.AABB);
+		Entity.setDebug(true);
 	}
 
 
@@ -93,6 +94,8 @@ public class EscapeGame extends StateBasedGame {
 		ResourceManager.loadImage(ENEMYBODYWALKUPSTILL_IMG_RSC);
 		ResourceManager.loadImage(ENEMYBODYWALKRIGHTSTILL_IMG_RSC);
 		ResourceManager.loadImage(ENEMYBODYWALKLEFTSTILL_IMG_RSC);
+
+		ResourceManager.loadImage(HEART_IMG_RSC);
 
 		player = new Player(96,128,0.1f);
 	}

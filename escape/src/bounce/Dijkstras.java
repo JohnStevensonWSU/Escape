@@ -72,8 +72,8 @@ public class Dijkstras {
     }
 
     public String getToPlayer(Enemy enemy) {
-        int x = (int) (enemy.getCoarseGrainedMaxX() - 16) / 32;
-        int y = (int) (enemy.getCoarseGrainedMaxY() - 16) / 32;
+        int x = (int) (enemy.getCoarseGrainedMaxX()) / 32;
+        int y = (int) (enemy.getCoarseGrainedMaxY()) / 32;
         int xIndex = 0, yIndex = 0;
 
         int[][] dirs = new int[3][3];
@@ -89,13 +89,6 @@ public class Dijkstras {
         dirs[2][1] = getValue(x + 1, y);
         dirs[2][2] = getValue(x + 1, y + 1);
 
-//        for (int[] row : dirs) {
-//            for (int cell : row) {
-//                if (cell < min) {
-//                    min = cell;
-//                }
-//            }
-//        }
         if (dirs[0][1] < min) {
             min = dirs[0][1];
             xIndex = 0;
@@ -117,6 +110,7 @@ public class Dijkstras {
             yIndex = 2;
         }
 
+        System.out.println("X: " + String.valueOf(xIndex) + " Y: " + String.valueOf(yIndex));
 
         if (min > 15) {
             return "stop";
