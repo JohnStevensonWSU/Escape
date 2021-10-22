@@ -11,6 +11,7 @@ public class Player extends Character {
     private int health;
     private int initialHealth;
     private Stack<Integer> keyStack = new Stack<Integer>();
+    private Collidable[][] collidables;
 
     public Player(int x, int y, float speed) {
         super(x,y,speed);
@@ -29,7 +30,12 @@ public class Player extends Character {
         initialHealth = health;
     }
 
+    public void setCollidables(Collidable[][] collidables) {
+        this.collidables = collidables;
+    }
+
     public void update(Input input, int delta) {
+        int x = (int) (this.getX() - 16) / 32, y = (int) (this.getY() - 16) / 32;
         Integer tos;
         if (isBouncing) {
             System.out.println("Bouncing");
@@ -67,13 +73,113 @@ public class Player extends Character {
         try {
             tos = keyStack.peek();
             if (tos == Input.KEY_DOWN) {
-                moveDown();
+                if (collidables[x][y + 1] != null) {
+                    if (collides(collidables[x][y + 1]) == null) {
+                        moveDown();
+                    } else if (collidables[x - 1][y + 1] == null) {
+                        moveLeft();
+                    } else if (collidables[x + 1][y + 1] == null) {
+                        moveRight();
+                    } else {
+                        moveStill();
+                    }
+                } else if (collidables[x - 1][y + 1] != null) {
+                    if (collides(collidables[x - 1][y + 1]) != null) {
+                       moveRight();
+                    } else {
+                        moveDown();
+                    }
+                } else if (collidables[x + 1][y + 1] != null) {
+                    if (collides(collidables[x + 1][y + 1]) != null) {
+                        moveLeft();
+                    } else {
+                        moveDown();
+                    }
+                }
+                else {
+                    moveDown();
+                }
             } else if (tos == Input.KEY_UP) {
-                moveUp();
+                if (collidables[x][y - 1] != null) {
+                    if (collides(collidables[x][y - 1]) == null) {
+                        moveUp();
+                    } else if (collidables[x - 1][y - 1] == null) {
+                        moveLeft();
+                    } else if (collidables[x + 1][y - 1] == null) {
+                        moveRight();
+                    } else {
+                        moveStill();
+                    }
+                } else if (collidables[x - 1][y - 1] != null) {
+                    if (collides(collidables[x - 1][y - 1]) != null) {
+                        moveRight();
+                    } else {
+                        moveUp();
+                    }
+                } else if (collidables[x + 1][y - 1] != null) {
+                    if (collides(collidables[x + 1][y - 1]) != null) {
+                        moveLeft();
+                    } else {
+                        moveUp();
+                    }
+                }
+                else {
+                    moveUp();
+                }
             } else if (tos == Input.KEY_RIGHT) {
-                moveRight();
+                if (collidables[x + 1][y] != null) {
+                    if (collides(collidables[x + 1][y]) == null) {
+                        moveRight();
+                    } else if (collidables[x + 1][y - 1] == null) {
+                        moveUp();
+                    } else if (collidables[x + 1][y + 1] == null) {
+                        moveDown();
+                    } else {
+                        moveStill();
+                    }
+                } else if (collidables[x + 1][y - 1] != null) {
+                    if (collides(collidables[x + 1][y - 1]) != null) {
+                        moveDown();
+                    } else {
+                        moveRight();
+                    }
+                } else if (collidables[x + 1][y + 1] != null) {
+                    if (collides(collidables[x + 1][y + 1]) != null) {
+                        moveUp();
+                    } else {
+                        moveRight();
+                    }
+                }
+                else {
+                    moveRight();
+                }
             } else if (tos == Input.KEY_LEFT) {
-                moveLeft();
+                if (collidables[x - 1][y] != null) {
+                    if (collides(collidables[x - 1][y]) == null) {
+                        moveLeft();
+                    } else if (collidables[x - 1][y - 1] == null) {
+                        moveUp();
+                    } else if (collidables[x - 1][y + 1] == null) {
+                        moveDown();
+                    } else {
+                        moveStill();
+                    }
+                } else if (collidables[x - 1][y - 1] != null) {
+                    if (collides(collidables[x - 1][y - 1]) != null) {
+                        moveDown();
+                    } else {
+                        moveLeft();
+                    }
+                } else if (collidables[x - 1][y + 1] != null) {
+                    if (collides(collidables[x - 1][y + 1]) != null) {
+                        moveUp();
+                    } else {
+                        moveLeft();
+                    }
+                }
+                else {
+                    moveLeft();
+                }
             }
         } catch (Exception e) {
             moveStill();

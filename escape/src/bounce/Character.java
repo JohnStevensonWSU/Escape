@@ -96,6 +96,7 @@ public class Character extends Movable {
     }
 
     private void move(String moveDir, String still) {
+        System.out.println(moveDir);
         if (currImage != null) {
             removeImage(ResourceManager.getImage(currImage));
             currImage = null;

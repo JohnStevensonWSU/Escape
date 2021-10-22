@@ -16,7 +16,7 @@
    H4sIAAAAAAAAA2NgGHlACgnjEqcmRjafXmDUXvLNIUX/qL0DYy+u/EVqniRG72Cwl1wwVON31N6BtZfc9DxU7aU2GLV31N7hbC898SigHwAAsQ1C3hAOAAA=
   </data>
  </layer>
- <layer id="4" name="Objects" width="30" height="30" visible="0">
+ <layer id="4" name="Objects" width="30" height="30">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3OsQAAAAACsPxpQgyjZyNYQt8BAACAgwG+foupEA4AAA==
   </data>

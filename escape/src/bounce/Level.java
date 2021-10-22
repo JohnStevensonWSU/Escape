@@ -59,6 +59,7 @@ public class Level extends BasicGameState {
         dijkstras = new Dijkstras(tileWidth, tileHeight, (int) eg.player.getX() / eg.TileSize, (int) eg.player.getY() / eg.TileSize, this.terrain);
         nextState = 2;
         eg.player.resetHealth();
+        eg.player.setCollidables(terrain);
     }
 
     @Override
@@ -105,15 +106,6 @@ public class Level extends BasicGameState {
         eg.player.checkObject(enemy);
         if (eg.player.getIsDead()) {
             stateBasedGame.enterState(nextState);
-        }
-        for (Collidable[] tileColumn : terrain) {
-            for (Collidable tile : tileColumn) {
-                try {
-                    eg.player.checkObject(tile);
-                } catch (Exception e) {
-                    // no terrain at this tile
-                }
-            }
         }
 
         if (eg.player.checkObject(escapePoint)) {
