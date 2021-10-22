@@ -1,5 +1,5 @@
 #Pending#
-- **[23]** Make user interface for level that shows player's remaining health
+- **[24]** Fix enemy pathfinding glitch
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -24,3 +24,4 @@
 - **[20]** Add object layer to tile map to dynamically place objects in the world
 - **[21]** Refactor Dijkstra code to take into account enemy bounds
 - **[22]** Refine player movement to allow for imprecise input
+- **[23]** Make user interface for level that shows player's remaining health
