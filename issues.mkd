@@ -1,4 +1,5 @@
 #Pending#
+- **[21]** Refactor Dijkstra code to take into account enemy bounds
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
