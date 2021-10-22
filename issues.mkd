@@ -1,5 +1,5 @@
 #Pending#
-- **[23]** Refine player movement to allow for imprecise input
+- **[22]** Refine player movement to allow for imprecise input
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
