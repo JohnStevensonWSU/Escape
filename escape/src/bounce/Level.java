@@ -80,9 +80,11 @@ public class Level extends BasicGameState {
 
         for (int i = 0; i < this.tileWidth; i++) {
             for (int j = 0; j < this.tileHeight; j++) {
-                graphics.drawString(String.valueOf(dijkstras.getValue(i,j)),
-                        i * eg.TileSize,
-                        j * eg.TileSize);
+                if (dijkstras.getValue(i,j) != 2147483647) {
+                    graphics.drawString(String.valueOf(dijkstras.getValue(i, j)),
+                            i * eg.TileSize + 8,
+                            j * eg.TileSize + 8);
+                }
             }
         }
 
@@ -96,12 +98,10 @@ public class Level extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Input input = gameContainer.getInput();
-        int px = (int) (eg.player.getX() + 8) / 16, py = (int) (eg.player.getY() + 8) / 16;
+        int px = (int) (eg.player.getX() - 16)/ eg.TileSize, py = (int) (eg.player.getY() - 16) / eg.TileSize;
 
 
         dijkstras.update(px,py);
-        enemy.update(dijkstras, delta);
-        eg.player.update(input, delta);
         eg.player.checkObject(enemy);
         if (eg.player.getIsDead()) {
             stateBasedGame.enterState(nextState);
@@ -119,6 +119,9 @@ public class Level extends BasicGameState {
         if (eg.player.checkObject(escapePoint)) {
             stateBasedGame.enterState(nextState);
         }
+
+        enemy.update(dijkstras, delta);
+        eg.player.update(input, delta);
     }
 
     public int getNextState() { return this.nextState; }
