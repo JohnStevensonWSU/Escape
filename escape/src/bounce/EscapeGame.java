@@ -18,25 +18,25 @@ public class EscapeGame extends StateBasedGame {
 	public static final String TILESET1_IMG_RSC = "bounce/resource/map/tileset1.png";
 	public static final String LEVEL1MAP_IMG_RSC = "bounce/resource/map/level1.tmx";
 
-	public static final String PLAYERBODYWALKDOWN_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_DOWN.png";
-	public static final String PLAYERBODYWALKUP_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_UP.png";
-	public static final String PLAYERBODYWALKLEFT_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_LEFT.png";
-	public static final String PLAYERBODYWALKRIGHT_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_RIGHT.png";
+	public static final String PLAYERBODYWALKDOWN_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_DOWN_32.png";
+	public static final String PLAYERBODYWALKUP_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_UP_32.png";
+	public static final String PLAYERBODYWALKLEFT_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_LEFT_32.png";
+	public static final String PLAYERBODYWALKRIGHT_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_RIGHT_32.png";
 
-	public static final String PLAYERBODYWALKDOWNSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_DOWN.png";
-	public static final String PLAYERBODYWALKRIGHTSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_RIGHT.png";
-	public static final String PLAYERBODYWALKUPSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_UP.png";
-	public static final String PLAYERBODYWALKLEFTSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_LEFT.png";
+	public static final String PLAYERBODYWALKDOWNSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_DOWN_32.png";
+	public static final String PLAYERBODYWALKRIGHTSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_RIGHT_32.png";
+	public static final String PLAYERBODYWALKUPSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_UP_32.png";
+	public static final String PLAYERBODYWALKLEFTSTILL_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_STILL_LEFT_32.png";
 
-	public static final String ENEMYBODYWALKDOWN_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_DOWN.png";
-	public static final String ENEMYBODYWALKUP_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_UP.png";
-	public static final String ENEMYBODYWALKLEFT_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_LEFT.png";
-	public static final String ENEMYBODYWALKRIGHT_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_RIGHT.png";
+	public static final String ENEMYBODYWALKDOWN_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_DOWN_32.png";
+	public static final String ENEMYBODYWALKUP_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_UP_32.png";
+	public static final String ENEMYBODYWALKLEFT_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_LEFT_32.png";
+	public static final String ENEMYBODYWALKRIGHT_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_RIGHT_32.png";
 
-	public static final String ENEMYBODYWALKDOWNSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_DOWN.png";
-	public static final String ENEMYBODYWALKRIGHTSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_RIGHT.png";
-	public static final String ENEMYBODYWALKUPSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_UP.png";
-	public static final String ENEMYBODYWALKLEFTSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_LEFT.png";
+	public static final String ENEMYBODYWALKDOWNSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_DOWN_32.png";
+	public static final String ENEMYBODYWALKRIGHTSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_RIGHT_32.png";
+	public static final String ENEMYBODYWALKUPSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_UP_32.png";
+	public static final String ENEMYBODYWALKLEFTSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_LEFT_32.png";
 
 	public static final int STARTUPSTATE = 0;
 	public static final int LEVEL_1 = 1;

@@ -106,7 +106,7 @@ public class Character extends Movable {
             }
             currDir = still;
             currAnimation = moveDir;
-            animation = new Animation(ResourceManager.getSpriteSheet(currAnimation,64,64), 100);
+            animation = new Animation(ResourceManager.getSpriteSheet(currAnimation,32,32), 100);
             addAnimation(animation, new Vector(-16f,-16f));
         }
     }
