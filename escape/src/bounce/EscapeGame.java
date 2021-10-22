@@ -1,6 +1,5 @@
 package bounce;
 
-import com.sun.jndi.dns.ResourceRecord;
 import jig.Entity;
 import jig.ResourceManager;
 
@@ -17,7 +16,7 @@ public class EscapeGame extends StateBasedGame {
 	public static final String PLAYER_IMG_RSC = "bounce/resource/player.png";
 	public static final String TILESET_IMG_RSC = "bounce/resource/map/tileset.png";
 	public static final String TILESET1_IMG_RSC = "bounce/resource/map/tileset1.png";
-	public static final String LEVEL1MAP_IMG_RSC = "bounce/resource/map/map.tmx";
+	public static final String LEVEL1MAP_IMG_RSC = "bounce/resource/map/level1.tmx";
 
 	public static final String PLAYERBODYWALKDOWN_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_DOWN.png";
 	public static final String PLAYERBODYWALKUP_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_UP.png";
@@ -58,7 +57,7 @@ public class EscapeGame extends StateBasedGame {
 		super(title);
 		ScreenHeight = height;
 		ScreenWidth = width;
-		TileSize = 16;
+		TileSize = 32;
 		TileWidth = ScreenWidth / TileSize;
 		TileHeight = ScreenHeight / TileSize;
 		Entity.setDebug(true);
@@ -95,14 +94,14 @@ public class EscapeGame extends StateBasedGame {
 		ResourceManager.loadImage(ENEMYBODYWALKRIGHTSTILL_IMG_RSC);
 		ResourceManager.loadImage(ENEMYBODYWALKLEFTSTILL_IMG_RSC);
 
-		player = new Player(50,50,0.1f);
+		player = new Player(96,128,0.1f);
 	}
 	
 	public static void main(String[] args) {
 		AppGameContainer app;
 		try {
 			app = new AppGameContainer(new EscapeGame("Escape!", 800, 600));
-			app.setDisplayMode(800, 800, false);
+			app.setDisplayMode(960, 960, false);
 			app.setVSync(true);
 			app.start();
 		} catch (SlickException e) {

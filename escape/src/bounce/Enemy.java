@@ -8,7 +8,6 @@ public class Enemy extends Character {
     private int tileX;
     private int tileY;
     private int damage;
-    private int lastDelta;
 
     public Enemy (int x, int y, float speed) {
         super(x,y,speed);
@@ -23,13 +22,12 @@ public class Enemy extends Character {
         setStillRight(EscapeGame.ENEMYBODYWALKRIGHTSTILL_IMG_RSC);
         setStillLeft(EscapeGame.ENEMYBODYWALKLEFTSTILL_IMG_RSC);
 
-        tileX = 16 * x;
-        tileY = 16 * y;
+        tileX = x / 32;
+        tileY = y / 32;
         damage = 1;
     }
 
     public void update(Dijkstras dijkstras, int delta) {
-        lastDelta = delta;
         if (isBouncing) {
             bounceTimer -= delta;
             if (bounceTimer < 0) {
@@ -39,7 +37,7 @@ public class Enemy extends Character {
             return;
         }
 
-        String dir = dijkstras.getToPlayer(tileX, tileY);
+        String dir = dijkstras.getToPlayer(this);
 
         if (dir == "stop") {
             moveStill();
@@ -58,8 +56,8 @@ public class Enemy extends Character {
         }
 
         super.update(delta);
-        tileX = (int) getX() / 16;
-        tileY = (int) getY() / 16;
+        tileX = (int) getX() / 32;
+        tileY = (int) getY() / 32;
     }
 
     public int getDamage() {

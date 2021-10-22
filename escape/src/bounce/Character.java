@@ -26,8 +26,8 @@ public class Character extends Movable {
 
     public Character (int x, int y, float speed) {
         super(x,y,0f,0f);
-        this.addShape(new ConvexPolygon(16f,16f),
-                new Vector(8f, 8f));
+        this.addShape(new ConvexPolygon(32f,32f),
+                new Vector(-16f, -16f));
         setVelocity();
         setSpeed(speed);
         prevPosition = getPosition();
@@ -66,7 +66,7 @@ public class Character extends Movable {
             return;
         }
         currImage = currDir != null ? currDir : stillDown;
-        addImage(ResourceManager.getImage(currImage), new Vector(8f,8f));
+        addImage(ResourceManager.getImage(currImage), new Vector(-16f,-16f));
         if (currAnimation != null) {
             removeAnimation(animation);
             currAnimation = null;
@@ -107,7 +107,7 @@ public class Character extends Movable {
             currDir = still;
             currAnimation = moveDir;
             animation = new Animation(ResourceManager.getSpriteSheet(currAnimation,64,64), 100);
-            addAnimation(animation, new Vector(8f,8f));
+            addAnimation(animation, new Vector(-16f,-16f));
         }
     }
 
