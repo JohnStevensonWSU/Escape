@@ -1,5 +1,4 @@
 #Pending#
-- **[21]** Refactor Dijkstra code to take into account enemy bounds
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -22,3 +21,4 @@
 - **[18]** Create state change for enemy chasing player
 - **[19]** Refine player movement controls
 - **[20]** Add object layer to tile map to dynamically place objects in the world
+- **[21]** Refactor Dijkstra code to take into account enemy bounds
