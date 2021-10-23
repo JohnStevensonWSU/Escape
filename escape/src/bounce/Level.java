@@ -80,15 +80,15 @@ public class Level extends BasicGameState {
             map.render(0, 0, collidableIndex);
         }
 
-//        for (int i = 0; i < this.tileWidth; i++) {
-//            for (int j = 0; j < this.tileHeight; j++) {
-//                if (dijkstras.getValue(i,j) != 2147483647) {
-//                    graphics.drawString(String.valueOf(dijkstras.getValue(i, j)),
-//                            i * eg.TileSize + 8,
-//                            j * eg.TileSize + 8);
-//                }
-//            }
-//        }
+        for (int i = 0; i < this.tileWidth; i++) {
+            for (int j = 0; j < this.tileHeight; j++) {
+                if (dijkstras.getValue(i,j) != 2147483647) {
+                    graphics.drawString(String.valueOf(dijkstras.getValue(i, j)),
+                            i * eg.TileSize + 8,
+                            j * eg.TileSize + 8);
+                }
+            }
+        }
 
         enemy.render(graphics);
 //        escapePoint.render(graphics);
@@ -103,8 +103,7 @@ public class Level extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Input input = gameContainer.getInput();
-        int px = (int) (eg.player.getX() - 16)/ eg.TileSize, py = (int) (eg.player.getY() - 16) / eg.TileSize;
-
+        int px = (int) eg.player.getX() / eg.TileSize, py = (int) eg.player.getY() / eg.TileSize;
 
         dijkstras.update(px,py);
         eg.player.checkObject(enemy);
@@ -116,6 +115,15 @@ public class Level extends BasicGameState {
             stateBasedGame.enterState(nextState);
         }
 
+        if (eg.player.isBouncing) {
+            for (Collidable[] row : terrain) {
+                for (Collidable cell : row) {
+                    if (cell != null) {
+                        eg.player.checkObject(cell);
+                    }
+                }
+            }
+        }
         enemy.update(dijkstras, delta);
         eg.player.update(input, delta);
     }

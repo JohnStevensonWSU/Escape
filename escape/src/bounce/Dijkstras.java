@@ -72,8 +72,8 @@ public class Dijkstras {
     }
 
     public String getToPlayer(Enemy enemy) {
-        int x = (int) (enemy.getCoarseGrainedMaxX()) / 32;
-        int y = (int) (enemy.getCoarseGrainedMaxY()) / 32;
+        int x = (int) enemy.getX() / 32;
+        int y = (int) enemy.getY() / 32;
         int xIndex = 0, yIndex = 0;
 
         int[][] dirs = new int[3][3];
