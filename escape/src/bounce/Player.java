@@ -200,6 +200,7 @@ public class Player extends Character {
                 this.bounce(enemy.getVelocity(), 0.05f);
             } catch (Exception e) {
                 handleCollision(collision);
+                bounceTimer = 0;
             } finally {
                 return true;
             }
