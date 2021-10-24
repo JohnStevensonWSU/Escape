@@ -12,6 +12,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.Layer;
 
+import javax.annotation.Resource;
+
 public class Level extends BasicGameState {
     protected int nextState;
     protected TileMap map;
@@ -22,6 +24,7 @@ public class Level extends BasicGameState {
     protected int tileWidth;
     protected int tileHeight;
     protected Collidable escapePoint;
+    protected Boolean isStarted;
 
     @Override
     public int getID() {
@@ -50,7 +53,7 @@ public class Level extends BasicGameState {
           for (int j = 0; j < map.getHeight(); j++) {
             collidable = collidables.data[i][j][2];
             object = objects.data[i][j][2];
-            if (object == 416) {
+            if (object == 176) {
               escapePoint = new Collidable(i,j);
             }
             if (collidable != 0) {
@@ -62,6 +65,7 @@ public class Level extends BasicGameState {
         eg.player.setCollidables(terrain);
 
         eg.player.resetHealth();
+        isStarted = false;
     }
 
     @Override
@@ -98,12 +102,23 @@ public class Level extends BasicGameState {
         for (int i = 0; i <= eg.player.getHealth(); i++) {
             graphics.drawImage(ResourceManager.getImage(EscapeGame.HEART_IMG_RSC), 40 + 32 * i, 900);
         }
+        if (!isStarted) {
+          graphics.drawImage(ResourceManager.getImage(EscapeGame.PRESSSPACE_IMG_RSC), eg.ScreenWidth / 2 - 187 / 2, eg.ScreenHeight / 2 + 100);
+        }
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Input input = gameContainer.getInput();
+
+        if (!isStarted) {
+          if (input.isKeyPressed(Input.KEY_SPACE)) {
+              isStarted = true;
+          } else {
+            return;
+          }
+        }
         int px = (int) eg.player.getX() / eg.TileSize, py = (int) eg.player.getY() / eg.TileSize;
 
         if (input.isKeyPressed(Input.KEY_X)) {
