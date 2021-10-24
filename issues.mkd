@@ -1,5 +1,4 @@
 #Pending#
-- **[26]** Display score for player
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -27,3 +26,4 @@
 - **[23]** Make user interface for level that shows player's remaining health
 - **[24]** Fix enemy pathfinding glitch
 - **[25]** Make escape point work
+- **[26]** Display score for player
