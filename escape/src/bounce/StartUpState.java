@@ -27,13 +27,25 @@ public class StartUpState extends BasicGameState {
 
     @Override
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+        EscapeGame eg = (EscapeGame) stateBasedGame;
 
+        eg.runTime = 0;
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
-        graphics.drawImage(ResourceManager.getImage(EscapeGame.PRESSSPACE_IMG_RSC), eg.ScreenWidth / 2 - 187 / 2, eg.ScreenHeight / 2 + 100);
+        graphics.drawImage(ResourceManager.getImage(EscapeGame.PRESSSPACE_IMG_RSC), eg.ScreenWidth / 2 - 374 / 2, eg.ScreenHeight / 2 - 60 / 2);
+//      for (int i = 0; i < eg.ScreenWidth; i++) {
+//        for (int j = 0; j < eg.ScreenHeight; j++) {
+//          if (i == (int) eg.ScreenWidth / 2) {
+//            graphics.drawString(".", i, j);
+//          }
+//          if (j == (int) eg.ScreenHeight / 2) {
+//            graphics.drawString(".", i, j);
+//          }
+//        }
+//      }
     }
 
     @Override

@@ -110,8 +110,6 @@ public class Dijkstras {
             yIndex = 2;
         }
 
-        System.out.println("X: " + String.valueOf(xIndex) + " Y: " + String.valueOf(yIndex));
-
         if (min > 15) {
             return "stop";
         }

@@ -39,6 +39,7 @@ public class Level extends BasicGameState {
     @Override
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException{
       EscapeGame eg = (EscapeGame) stateBasedGame;
+      Input input = gameContainer.getInput();
 
       this.tileWidth = map.getWidth();
       this.tileHeight = map.getHeight();
@@ -103,8 +104,13 @@ public class Level extends BasicGameState {
             graphics.drawImage(ResourceManager.getImage(EscapeGame.HEART_IMG_RSC), 40 + 32 * i, 900);
         }
         if (!isStarted) {
-          graphics.drawImage(ResourceManager.getImage(EscapeGame.PRESSSPACE_IMG_RSC), eg.ScreenWidth / 2 - 187 / 2, eg.ScreenHeight / 2 + 100);
+          graphics.drawImage(ResourceManager.getImage(EscapeGame.PRESSSPACE_IMG_RSC), eg.ScreenWidth / 2 - 374 / 2, eg.ScreenHeight / 2 - 60 / 2);
         }
+
+        graphics.drawString("Time: " + String.format("%02d", eg.runTime / 60000) + ":" +
+            String.format("%02d", eg.runTime % 60000 / 1000) + ":" +
+            String.format("%02d", eg.runTime % 1000 / 10),
+            10, 30);
     }
 
     @Override
@@ -112,7 +118,11 @@ public class Level extends BasicGameState {
         EscapeGame eg = (EscapeGame) stateBasedGame;
         Input input = gameContainer.getInput();
 
-        if (!isStarted) {
+        if (input.isKeyPressed(Input.KEY_X)) {
+            eg.enterState(nextState);
+        }
+
+      if (!isStarted) {
           if (input.isKeyPressed(Input.KEY_SPACE)) {
               isStarted = true;
           } else {
@@ -121,9 +131,6 @@ public class Level extends BasicGameState {
         }
         int px = (int) eg.player.getX() / eg.TileSize, py = (int) eg.player.getY() / eg.TileSize;
 
-        if (input.isKeyPressed(Input.KEY_X)) {
-          eg.enterState(nextState);
-        }
         dijkstras.update(px,py);
         eg.player.checkObject(enemy);
         if (eg.player.getIsDead()) {
@@ -145,6 +152,7 @@ public class Level extends BasicGameState {
         }
         enemy.update(dijkstras, delta);
         eg.player.update(input, delta);
+        eg.runTime += delta;
     }
 
     public int getNextState() { return this.nextState; }
