@@ -1,4 +1,5 @@
 #Pending#
+- **[25]** Make escape point work
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
