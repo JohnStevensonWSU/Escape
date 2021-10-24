@@ -8,7 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class GameOverState extends BasicGameState {
     private int timer;
-    private int nextState = 1;
+    private int nextState = 0;
 
     public GameOverState() {
         super();
@@ -16,7 +16,7 @@ public class GameOverState extends BasicGameState {
 
     @Override
     public int getID() {
-        return 2;
+        return 3;
     }
 
     @Override
