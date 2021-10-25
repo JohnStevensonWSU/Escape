@@ -12,6 +12,7 @@ public class EscapeGame extends StateBasedGame {
 	public final int TileSize;
 	public final int TileWidth;
 	public final int TileHeight;
+	public int runTime;
 
 	public static final String PLAYER_IMG_RSC = "bounce/resource/player.png";
 	public static final String TILESET_IMG_RSC = "bounce/resource/map/tileset.png";
@@ -39,9 +40,13 @@ public class EscapeGame extends StateBasedGame {
 	public static final String ENEMYBODYWALKLEFTSTILL_IMG_RSC = "bounce/resource/walking/BODY_SKELETON_WALKING_STILL_LEFT_32.png";
 
 	public static final String HEART_IMG_RSC = "bounce/resource/Heart.png";
+	public static final String PRESSSPACE_IMG_RSC = "bounce/resource/PressSpace.png";
+	public static final String GAMEOVER_IMG_RSC = "bounce/resource/GameOver.png";
 
 	public static final int STARTUPSTATE = 0;
 	public static final int LEVEL_1 = 1;
+	public static final int LEVEL_2 = 2;
+	public static final int GAMEOVERSTATE = 3;
 
 	public Player player;
 
@@ -63,14 +68,15 @@ public class EscapeGame extends StateBasedGame {
 		TileWidth = ScreenWidth / TileSize;
 		TileHeight = ScreenHeight / TileSize;
 		Entity.setCoarseGrainedCollisionBoundary(Entity.AABB);
-		Entity.setDebug(true);
+//		Entity.setDebug(true);
 	}
 
 
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
 		addState(new StartUpState());
-		addState(new Level());
+		addState(new Level1());
+		addState(new Level2());
 		addState(new GameOverState());
 
 		ResourceManager.loadImage(PLAYER_IMG_RSC);
@@ -96,6 +102,8 @@ public class EscapeGame extends StateBasedGame {
 		ResourceManager.loadImage(ENEMYBODYWALKLEFTSTILL_IMG_RSC);
 
 		ResourceManager.loadImage(HEART_IMG_RSC);
+		ResourceManager.loadImage(PRESSSPACE_IMG_RSC);
+		ResourceManager.loadImage(GAMEOVER_IMG_RSC);
 
 		player = new Player(96,128,0.1f);
 	}
@@ -103,7 +111,7 @@ public class EscapeGame extends StateBasedGame {
 	public static void main(String[] args) {
 		AppGameContainer app;
 		try {
-			app = new AppGameContainer(new EscapeGame("Escape!", 800, 600));
+			app = new AppGameContainer(new EscapeGame("Escape!", 960, 960));
 			app.setDisplayMode(960, 960, false);
 			app.setVSync(true);
 			app.start();
