@@ -1,6 +1,4 @@
 #Pending#
-- **[22]** Store images in Character entity class
-- **[21]** Fix enemy collision with environment
 
 #Resolved#
 - **[1]** Create player entity and render them on the screen
@@ -23,3 +21,9 @@
 - **[18]** Create state change for enemy chasing player
 - **[19]** Refine player movement controls
 - **[20]** Add object layer to tile map to dynamically place objects in the world
+- **[21]** Refactor Dijkstra code to take into account enemy bounds
+- **[22]** Refine player movement to allow for imprecise input
+- **[23]** Make user interface for level that shows player's remaining health
+- **[24]** Fix enemy pathfinding glitch
+- **[25]** Make escape point work
+- **[26]** Display score for player

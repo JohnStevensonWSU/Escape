@@ -11,9 +11,12 @@ public class Player extends Character {
     private int health;
     private int initialHealth;
     private Stack<Integer> keyStack = new Stack<Integer>();
+    private Collidable[][] collidables;
+    private Vector initialPosition;
 
     public Player(int x, int y, float speed) {
         super(x,y,speed);
+        initialPosition = getPosition();
 
         setMoveDown(EscapeGame.PLAYERBODYWALKDOWN_IMG_RSC);
         setMoveLeft(EscapeGame.PLAYERBODYWALKLEFT_IMG_RSC);
@@ -25,14 +28,18 @@ public class Player extends Character {
         setStillRight(EscapeGame.PLAYERBODYWALKRIGHTSTILL_IMG_RSC);
         setStillLeft(EscapeGame.PLAYERBODYWALKLEFTSTILL_IMG_RSC);
 
-        health = 3;
+        health = 2;
         initialHealth = health;
     }
 
+    public void setCollidables(Collidable[][] collidables) {
+        this.collidables = collidables;
+    }
+
     public void update(Input input, int delta) {
+        int x = (int) this.getX() / 32, y = (int) this.getY() / 32;
         Integer tos;
         if (isBouncing) {
-            System.out.println("Bouncing");
             bounceTimer -= delta;
             if (bounceTimer < 0) {
                 isBouncing = false;
@@ -67,13 +74,113 @@ public class Player extends Character {
         try {
             tos = keyStack.peek();
             if (tos == Input.KEY_DOWN) {
-                moveDown();
+                if (collidables[x][y + 1] != null) {
+                    if (collides(collidables[x][y + 1]) == null) {
+                        moveDown();
+                    } else if (collidables[x - 1][y + 1] == null) {
+                        moveLeft();
+                    } else if (collidables[x + 1][y + 1] == null) {
+                        moveRight();
+                    } else {
+                        moveStill();
+                    }
+                } else if (collidables[x - 1][y + 1] != null) {
+                    if (collides(collidables[x - 1][y + 1]) != null) {
+                       moveRight();
+                    } else {
+                        moveDown();
+                    }
+                } else if (collidables[x + 1][y + 1] != null) {
+                    if (collides(collidables[x + 1][y + 1]) != null) {
+                        moveLeft();
+                    } else {
+                        moveDown();
+                    }
+                }
+                else {
+                    moveDown();
+                }
             } else if (tos == Input.KEY_UP) {
-                moveUp();
+                if (collidables[x][y - 1] != null) {
+                    if (collides(collidables[x][y - 1]) == null) {
+                        moveUp();
+                    } else if (collidables[x - 1][y - 1] == null) {
+                        moveLeft();
+                    } else if (collidables[x + 1][y - 1] == null) {
+                        moveRight();
+                    } else {
+                        moveStill();
+                    }
+                } else if (collidables[x - 1][y - 1] != null) {
+                    if (collides(collidables[x - 1][y - 1]) != null) {
+                        moveRight();
+                    } else {
+                        moveUp();
+                    }
+                } else if (collidables[x + 1][y - 1] != null) {
+                    if (collides(collidables[x + 1][y - 1]) != null) {
+                        moveLeft();
+                    } else {
+                        moveUp();
+                    }
+                }
+                else {
+                    moveUp();
+                }
             } else if (tos == Input.KEY_RIGHT) {
-                moveRight();
+                if (collidables[x + 1][y] != null) {
+                    if (collides(collidables[x + 1][y]) == null) {
+                        moveRight();
+                    } else if (collidables[x + 1][y - 1] == null) {
+                        moveUp();
+                    } else if (collidables[x + 1][y + 1] == null) {
+                        moveDown();
+                    } else {
+                        moveStill();
+                    }
+                } else if (collidables[x + 1][y - 1] != null) {
+                    if (collides(collidables[x + 1][y - 1]) != null) {
+                        moveDown();
+                    } else {
+                        moveRight();
+                    }
+                } else if (collidables[x + 1][y + 1] != null) {
+                    if (collides(collidables[x + 1][y + 1]) != null) {
+                        moveUp();
+                    } else {
+                        moveRight();
+                    }
+                }
+                else {
+                    moveRight();
+                }
             } else if (tos == Input.KEY_LEFT) {
-                moveLeft();
+                if (collidables[x - 1][y] != null) {
+                    if (collides(collidables[x - 1][y]) == null) {
+                        moveLeft();
+                    } else if (collidables[x - 1][y - 1] == null) {
+                        moveUp();
+                    } else if (collidables[x - 1][y + 1] == null) {
+                        moveDown();
+                    } else {
+                        moveStill();
+                    }
+                } else if (collidables[x - 1][y - 1] != null) {
+                    if (collides(collidables[x - 1][y - 1]) != null) {
+                        moveDown();
+                    } else {
+                        moveLeft();
+                    }
+                } else if (collidables[x - 1][y + 1] != null) {
+                    if (collides(collidables[x - 1][y + 1]) != null) {
+                        moveUp();
+                    } else {
+                        moveLeft();
+                    }
+                }
+                else {
+                    moveLeft();
+                }
             }
         } catch (Exception e) {
             moveStill();
@@ -90,10 +197,11 @@ public class Player extends Character {
                 enemy = (Enemy) object;
                 this.takeDamage(enemy.getDamage());
                 handleCollision(collision);
-                enemy.bounce(enemy.getVelocity(), 0.05f);
-                this.bounce(enemy.getVelocity(), 0.05f);
+                reset();
+//                this.bounce(enemy.getVelocity(), 0.05f);
             } catch (Exception e) {
                 handleCollision(collision);
+                bounceTimer = 0;
             } finally {
                 return true;
             }
@@ -116,5 +224,8 @@ public class Player extends Character {
         health = initialHealth;
     }
 
+    public int getHealth() {
+        return health;
+    }
 
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="32x32_tileset.tsx"/>
+ <tileset firstgid="241" source="tile_set.tsx"/>
+ <layer id="1" name="Background" width="30" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DAQ0AAAzDoLqaf2cXckhYNVVVVd89BSv/SBAOAAA=
+  </data>
+ </layer>
+ <layer id="2" name="Foreground" width="30" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+1WSxbCMAhkpdUjdKE9hU89hFbv6R1tFn3iPEiG/uxC3ptFU8K0wITUIlL/CJsO2xlQGfErxXvocCTwIv16NBBf1FrCSeaxsxG/X1sL767DHbB33uO6fo7ypnXssyu5D/MW5cU+ey7Ae4H/Q8vx3uS7Pm2At2Tpu7z8e+cAUyc07JeHfHSM+df10Vpn6oRm1W2s35S8pb4o8WJeWV7PrHiMHsbyWvFYXtRHCbl8RXijc5WNV/IrzecKfHR/Yb9FeHtdevO3AR+tVzT2nGT0Eem9KedvjpfVEWNWLK/nW/H7itFJTht6VkTmAnOfxL2aN82K3P1vyFywbMwZtgbe6DnYDtiDd5A/lsEb1XMFHxAOAAA=
+  </data>
+ </layer>
+ <layer id="3" name="Collidable" width="30" height="30" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2UWw6AIAwEOYf3Pyi/xgDZ4bE0sZv0h0gH60gp/8tjrjf39Pu0WBG4ymxG68ll3F7U8ygOE69cXDrnU9wdz0XiKp6SzPp8m0sruV7uNzu9Iu6p/6/aq9dj9r5Se5HvTfatOhCNS0I8au2NwHVWxpcK3wYlThAOAAA=
+  </data>
+ </layer>
+ <layer id="4" name="Objects" width="30" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3OMQ0AAAgDsPlXg0Qc7CM8rYImXJnvAAAAQLH29/YLEA4AAA==
+  </data>
+ </layer>
+</map>

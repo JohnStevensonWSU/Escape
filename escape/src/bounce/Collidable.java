@@ -16,11 +16,11 @@ public class Collidable extends Foreground {
     private final int tileY;
 
     public Collidable (int x, int y) {
-        super(x * 16,y * 16);
-        this.minX = x * 16;
-        this.maxX = x * 16 + 16;
-        this.minY = y * 16;
-        this.maxY = y * 16 + 16;
+        super(x * 32,y * 32);
+        this.minX = x * 32;
+        this.maxX = x * 32 + 32;
+        this.minY = y * 32;
+        this.maxY = y * 32 + 32;
 
         this.tileX = x;
         this.tileY = y;
@@ -28,8 +28,8 @@ public class Collidable extends Foreground {
         addImageWithBoundingBox(
                 ResourceManager
                         .getImage(EscapeGame.PLAYER_IMG_RSC)
-                        .getScaledCopy(16,16),
-                new Vector(8f, 8f));
+                        .getScaledCopy(32,32),
+                new Vector(16f, 16f));
 
     }
 
