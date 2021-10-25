@@ -32,7 +32,11 @@ public class GameOverState extends BasicGameState {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
-        graphics.drawString("Game Over",eg.ScreenWidth / 2 - 55, eg.ScreenHeight / 4);
+        if (eg.didWin) {
+          graphics.drawString("You Win!",eg.ScreenWidth / 2 - 47, eg.ScreenHeight / 4);
+        } else {
+          graphics.drawString("Game Over",eg.ScreenWidth / 2 - 55, eg.ScreenHeight / 4);
+        }
         graphics.drawString("Time: " + String.format("%02d", eg.runTime / 60000) + ":" +
             String.format("%02d", eg.runTime % 60000 / 1000) + ":" +
             String.format("%02d", eg.runTime % 1000 / 10),

@@ -159,6 +159,7 @@ public class Level extends BasicGameState {
             }
         }
         if (eg.player.getIsDead()) {
+            eg.didWin = false;
             stateBasedGame.enterState(EscapeGame.GAMEOVERSTATE);
         }
 

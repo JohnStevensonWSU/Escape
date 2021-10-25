@@ -13,6 +13,7 @@ public class EscapeGame extends StateBasedGame {
 	public final int TileWidth;
 	public final int TileHeight;
 	public int runTime;
+	public boolean didWin = true;
 
 	public static final String PLAYER_IMG_RSC = "bounce/resource/player.png";
 	public static final String TILESET_IMG_RSC = "bounce/resource/map/tileset.png";
