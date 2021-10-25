@@ -38,6 +38,11 @@ public class StartUpState extends BasicGameState {
         graphics.drawString("Escape!",eg.ScreenWidth / 2 - 40, eg.ScreenHeight / 4);
         graphics.drawString("By John Stevenson",eg.ScreenWidth / 2 - 92, eg.ScreenHeight / 4 + 30);
         graphics.drawString("Press Space to Start...",eg.ScreenWidth / 2 - 105, eg.ScreenHeight / 2);
+        graphics.drawString("Or choose your difficulty:",eg.ScreenWidth / 2 - 120, eg.ScreenHeight / 2 + 60);
+        graphics.drawString("1 - Easy",eg.ScreenWidth / 2 - 45, eg.ScreenHeight / 2 + 80);
+        graphics.drawString("2 - Medium",eg.ScreenWidth / 2 - 53, eg.ScreenHeight / 2 + 100);
+        graphics.drawString("3 - Hard",eg.ScreenWidth / 2 - 45, eg.ScreenHeight / 2 + 120);
+
 //      for (int i = 0; i < eg.ScreenWidth; i++) {
 //        for (int j = 0; j < eg.ScreenHeight; j++) {
 //          if (i == (int) eg.ScreenWidth / 2) {
@@ -52,9 +57,18 @@ public class StartUpState extends BasicGameState {
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-        Input input = gameContainer.getInput();
-        if (input.isKeyPressed(Input.KEY_SPACE)) {
-            stateBasedGame.enterState(nextState);
-        }
+      Input input = gameContainer.getInput();
+      EscapeGame eg = (EscapeGame) stateBasedGame;
+      if (input.isKeyPressed(Input.KEY_SPACE) || input.isKeyPressed(Input.KEY_1)) {
+        eg.difficulty = "easy";
+        stateBasedGame.enterState(nextState);
+      } else if (input.isKeyPressed(Input.KEY_2)) {
+        eg.difficulty = "medium";
+        stateBasedGame.enterState(nextState);
+      } else if (input.isKeyPressed(Input.KEY_3)) {
+        eg.difficulty = "hard";
+        stateBasedGame.enterState(nextState);
+      }
+
     }
 }

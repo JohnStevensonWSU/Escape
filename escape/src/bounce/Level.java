@@ -27,6 +27,8 @@ public class Level extends BasicGameState {
     protected int tileHeight;
     protected Collidable escapePoint;
     protected Boolean isStarted;
+    protected int view;
+    protected boolean isFog;
 
     @Override
     public int getID() {
@@ -69,6 +71,21 @@ public class Level extends BasicGameState {
 
         eg.player.resetHealth();
         isStarted = false;
+
+        System.out.println(eg.difficulty);
+        switch (eg.difficulty) {
+          case "easy":
+            isFog = false;
+            break;
+          case "medium":
+            isFog = true;
+            view = 5;
+            break;
+          case "hard":
+            isFog = true;
+            view = 3;
+            break;
+        }
     }
 
     @Override
@@ -105,12 +122,14 @@ public class Level extends BasicGameState {
 
         eg.player.render(graphics);
 
-        for (int i = 0; i < tileWidth; i++) {
+        if (isFog) {
+          for (int i = 0; i < tileWidth; i++) {
             for (int j = 0; j < tileHeight; j++) {
-                if (i > px + 4 || i < px - 4 || j < py - 4 || j > py + 4) {
-                    graphics.drawImage(ResourceManager.getImage(EscapeGame.FOG_IMG_RSC), i * eg.TileSize, j * eg.TileSize);
-                }
+              if (i > px + view || i < px - view || j < py - view || j > py + view) {
+                graphics.drawImage(ResourceManager.getImage(EscapeGame.FOG_IMG_RSC), i * eg.TileSize, j * eg.TileSize);
+              }
             }
+          }
         }
 
         for (Enemy enemy : enemies) {
