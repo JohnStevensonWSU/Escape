@@ -35,7 +35,9 @@ public class StartUpState extends BasicGameState {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
-        graphics.drawImage(ResourceManager.getImage(EscapeGame.PRESSSPACE_IMG_RSC), eg.ScreenWidth / 2 - 374 / 2, eg.ScreenHeight / 2 - 60 / 2);
+        graphics.drawString("Escape!",eg.ScreenWidth / 2 - 40, eg.ScreenHeight / 4);
+        graphics.drawString("By John Stevenson",eg.ScreenWidth / 2 - 92, eg.ScreenHeight / 4 + 30);
+        graphics.drawString("Press Space to Start...",eg.ScreenWidth / 2 - 105, eg.ScreenHeight / 2);
 //      for (int i = 0; i < eg.ScreenWidth; i++) {
 //        for (int j = 0; j < eg.ScreenHeight; j++) {
 //          if (i == (int) eg.ScreenWidth / 2) {

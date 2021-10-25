@@ -26,17 +26,21 @@ public class GameOverState extends BasicGameState {
 
     @Override
     public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException{
-        timer = 10000;
+        timer = 5000;
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         EscapeGame eg = (EscapeGame) stateBasedGame;
-        graphics.drawImage(ResourceManager.getImage(EscapeGame.GAMEOVER_IMG_RSC), eg.ScreenWidth / 2 - 349 / 2, eg.ScreenHeight / 2 - 60 / 2);
+        graphics.drawString("Game Over",eg.ScreenWidth / 2 - 55, eg.ScreenHeight / 4);
         graphics.drawString("Time: " + String.format("%02d", eg.runTime / 60000) + ":" +
             String.format("%02d", eg.runTime % 60000 / 1000) + ":" +
             String.format("%02d", eg.runTime % 1000 / 10),
-            eg.ScreenWidth / 2 - 75, eg.ScreenHeight / 2 + 50);
+            eg.ScreenWidth / 2 - 75, eg.ScreenHeight / 4 + 50);
+
+        graphics.drawString("Art Credits to:", eg.ScreenWidth / 2 - 80, eg.ScreenHeight / 2);
+        graphics.drawString("Wulax (OpenGameArt) -- Character Animations", eg.ScreenWidth / 2 - 220, eg.ScreenHeight / 2 + 40);
+        graphics.drawString("Buch (OpenGameArt) -- Dungeon Art", eg.ScreenWidth / 2 - 180, eg.ScreenHeight / 2 + 60);
 //        for (int i = 0; i < eg.ScreenWidth; i++) {
 //          for (int j = 0; j < eg.ScreenHeight; j++) {
 //            if (i == (int) eg.ScreenWidth / 2) {

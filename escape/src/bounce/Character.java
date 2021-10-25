@@ -11,6 +11,7 @@ public class Character extends Movable {
     private Vector prevPosition;
     protected boolean isBouncing = false;
     protected int bounceTimer;
+    private Vector initialPosition;
 
     private String moveLeft = EscapeGame.PLAYERBODYWALKLEFT_IMG_RSC,
             moveRight = EscapeGame.PLAYERBODYWALKRIGHT_IMG_RSC,
@@ -31,6 +32,7 @@ public class Character extends Movable {
         setVelocity();
         setSpeed(speed);
         prevPosition = getPosition();
+        initialPosition = getPosition();
     }
 
     public void update(int delta) {
@@ -184,10 +186,8 @@ public class Character extends Movable {
         moveStill();
     }
 
-    public void bounce(Vector bounceDir, float bounceFactor) {
-        isBouncing = true;
-
-        setVelocity(bounceDir.negate().scale(bounceFactor + 1));
-        bounceTimer = 333;
+    public void reset() {
+        moveStill();
+        setPosition(initialPosition);
     }
 }

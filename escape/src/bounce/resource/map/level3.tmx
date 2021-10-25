@@ -9,17 +9,17 @@
  </layer>
  <layer id="2" name="Foreground" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2WQQ7CIBBFZ6W1R+hCe4pGewjL/U8jREkmk/kwUIounOQvaKCv+TOfdCKi6Us6eZ07aWDcq9etk2bGXahf3X+A+/TaPhrZngt4xteo0D7O5XO1sj0Pes/BIs5Z/EH7rD7L82HN/eEaE+dacFHu1sS5FtwjfI6zFOU6cTUf5azxdep74xzIviNuTZ5L+t6aa/Vf42o+Sg9LcmPlahW+Jedfqu+W/rYuLYfa/Yx8PIKLZPFB+mjJf45bcw9rs4BypOVuAM+t9zAqzpX/OaFm4/v2cNE9WsPVsl6SI5THHLekv3vy29rnHlyUF4tc4XlH+fz+1U4vD3JCJxAOAAA=
+   H4sIAAAAAAAAA+2WSw6CMBCGZ6XVI7BQTmHUQ2jvfxrLwqT8mSe0iomT/AsKnQ/mVQYiGr6kXdG+gxLjP1XcU9G5g0bG/1hxL9THroz/99pWuIeiJ+go3Mf1+jrKndaxzu7OfRi3KFeLey/ujebfF+E+aJ6fHOBaNr2XFH9pDnjyhMbVC2dWfqLciL+eXKmPJC7GS+tfzZ+UX6kecb+3H7zxk+wXudiXlrQ8RbjW+ZzgGS3vLeMcyYV3TlpzsxXXY1avWc8u5UZyodWVp16tGpV8ZIXr+Z/EmpRmWKvziLM1s2QL3Og8ygv24D/IX5/RC9X0zrcQDgAA
   </data>
  </layer>
  <layer id="3" name="Collidable" width="30" height="30" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3UUQ6AIAwDUM7h/Q/qrx/UtZuWRWmyH4N7gRHG+F8Oc11dV7q46BzQN6b/bF0Xl/1fuTNfcqOobnYfq9zMW5HZTzeXWce6lfvLumhtde4Zt5LIjfbTzWXfM+SifupcVVct5Ea5c5V+VTfb7635ul02T5+zy3XWji8nXG40oBAOAAA=
+   H4sIAAAAAAAAA+2UUQoAIAhDO0f3P2i/fWQ5pTGpgVCRPK1ha++pk2Pm3u5nxVLget5md16Va0mVi3gY8RWLe+o/cq8SF/GVlW+tPXs2F1VVLhrVuTshf6HG9eZ6a4vOydvcrFeQXAUuoswsUeEy44unASBBfX4QDgAA
   </data>
  </layer>
  <layer id="4" name="Objects" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3OAQ0AAAgDoPdPY0Rj3DlIQAIAwFfTDgCnLX5NtCkQDgAA
+   H4sIAAAAAAAAA+3OMQ0AAAgDsPlXg0Qc7CM8rYImXJnvAAAAQLH29/YLEA4AAA==
   </data>
  </layer>
 </map>

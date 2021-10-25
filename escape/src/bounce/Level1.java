@@ -30,13 +30,15 @@ public class Level1 extends Level {
     eg.player.setPosition(2 * eg.TileSize + eg.TileSize / 2, 3 * eg.TileSize + eg.TileSize / 2);
     map = new TileMap(EscapeGame.LEVEL1MAP_IMG_RSC);
     super.enter(gameContainer, stateBasedGame);
+    enemies.add(new Enemy(13 * eg.TileSize - eg.TileSize / 2, 19 * eg.TileSize - eg.TileSize / 2, 0.05f));
+    enemies.add(new Enemy(17 * eg.TileSize - eg.TileSize / 2, 5 * eg.TileSize - eg.TileSize / 2, 0.08f));
+    enemies.add(new Enemy(21 * eg.TileSize - eg.TileSize / 2, 17 * eg.TileSize - eg.TileSize / 2, 0.07f));
     nextState = EscapeGame.LEVEL_2;
   }
 
   @Override
   public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
     super.render(gameContainer, stateBasedGame, graphics);
-    graphics.drawString("LEVEL 1", 100, 100);
   }
 
   @Override

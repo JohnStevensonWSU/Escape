@@ -12,9 +12,11 @@ public class Player extends Character {
     private int initialHealth;
     private Stack<Integer> keyStack = new Stack<Integer>();
     private Collidable[][] collidables;
+    private Vector initialPosition;
 
     public Player(int x, int y, float speed) {
         super(x,y,speed);
+        initialPosition = getPosition();
 
         setMoveDown(EscapeGame.PLAYERBODYWALKDOWN_IMG_RSC);
         setMoveLeft(EscapeGame.PLAYERBODYWALKLEFT_IMG_RSC);
@@ -38,7 +40,6 @@ public class Player extends Character {
         int x = (int) this.getX() / 32, y = (int) this.getY() / 32;
         Integer tos;
         if (isBouncing) {
-            System.out.println("Bouncing");
             bounceTimer -= delta;
             if (bounceTimer < 0) {
                 isBouncing = false;
@@ -196,8 +197,8 @@ public class Player extends Character {
                 enemy = (Enemy) object;
                 this.takeDamage(enemy.getDamage());
                 handleCollision(collision);
-                enemy.bounce(enemy.getVelocity(), 0.05f);
-                this.bounce(enemy.getVelocity(), 0.05f);
+                reset();
+//                this.bounce(enemy.getVelocity(), 0.05f);
             } catch (Exception e) {
                 handleCollision(collision);
                 bounceTimer = 0;

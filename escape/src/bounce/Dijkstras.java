@@ -110,7 +110,7 @@ public class Dijkstras {
             yIndex = 2;
         }
 
-        if (min > 15) {
+        if (min > 10) {
             return "stop";
         }
 

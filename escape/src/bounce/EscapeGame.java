@@ -18,6 +18,7 @@ public class EscapeGame extends StateBasedGame {
 	public static final String TILESET_IMG_RSC = "bounce/resource/map/tileset.png";
 	public static final String TILESET1_IMG_RSC = "bounce/resource/map/tileset1.png";
 	public static final String LEVEL1MAP_IMG_RSC = "bounce/resource/map/level1.tmx";
+	public static final String LEVEL2MAP_IMG_RSC = "bounce/resource/map/level2.tmx";
 
 	public static final String PLAYERBODYWALKDOWN_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_DOWN_32.png";
 	public static final String PLAYERBODYWALKUP_IMG_RSC = "bounce/resource/walking/BODY_MALE_WALKING_UP_32.png";
@@ -42,6 +43,7 @@ public class EscapeGame extends StateBasedGame {
 	public static final String HEART_IMG_RSC = "bounce/resource/Heart.png";
 	public static final String PRESSSPACE_IMG_RSC = "bounce/resource/PressSpace.png";
 	public static final String GAMEOVER_IMG_RSC = "bounce/resource/GameOver.png";
+	public static final String FOG_IMG_RSC = "bounce/resource/fog.png";
 
 	public static final int STARTUPSTATE = 0;
 	public static final int LEVEL_1 = 1;
@@ -69,6 +71,7 @@ public class EscapeGame extends StateBasedGame {
 		TileHeight = ScreenHeight / TileSize;
 		Entity.setCoarseGrainedCollisionBoundary(Entity.AABB);
 //		Entity.setDebug(true);
+
 	}
 
 
@@ -104,6 +107,9 @@ public class EscapeGame extends StateBasedGame {
 		ResourceManager.loadImage(HEART_IMG_RSC);
 		ResourceManager.loadImage(PRESSSPACE_IMG_RSC);
 		ResourceManager.loadImage(GAMEOVER_IMG_RSC);
+		ResourceManager.loadImage(FOG_IMG_RSC);
+
+
 
 		player = new Player(96,128,0.1f);
 	}
