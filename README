@@ -1,0 +1,59 @@
+DESCRIPTION
+-----------
+Escape is a 2D top-down game which puts the player in a dungeon-like setting. The objective of the game is to escape
+the level (and eventually the dungeon). Players are scored on the amount of time it takes them to complete each level.
+When a player progresses, their time follows them. This allows for easy tracking of high scores and enables easy
+speed running of the game. Within each level is a series of walls and obstacles that inhibit the player to moving only
+within their bounds. This forces the player to find their way to the end like in a maze. The only thing is that they do
+not know where the end is. This is achieved by the player having a restricted field of view, limited to only a few
+square tiles. This field of view is determined by the difficulty they chose at the start of play. The player will also
+encounter skeletons within each level that, when triggered, will follow the player until they get far enough from them
+that they are no longer interested. When a skeleton reaches a player, the player will lose a life (of which they start
+with three) and will return back to the start of the level. Their time will persist from the moment before death. If the
+player loses all of their lives, the game will end and the player's time will be displayed on the screen. Similarly, if
+a player is able to beat all levels in the game (currently two exist), a winning message will appear along with the
+player's time.
+
+OBJECTIVES
+----------
+*** Go from the start of each level to the exit (open door) as quick as possible
+
+*** Avoid contact with skeletons
+
+HOW TO PLAY
+-----------
+The player is controlled using the arrow keys on a keyboard. Each key will move the player in the corresponding
+direction. To start the game, either press the space bar to start on the easy difficulty or choose the difficulty
+using the number keys one, two, and three (numbers above letter keys) for easy, medium, and hard difficulties
+respectively. Upon entering a level or death, the player may be prompted to press the space bar to continue. The
+player's time will halt until this is pressed. But once it is, the game is on. Upon losing or winning the game, a game
+over screen will display. After a few seconds, the player will be returned to the title screen where they can choose to
+play again and select their difficulty.
+
+CHEAT CODES
+-----------
+*** x : automatically completes the level
+
+LOW BAR CHECKLIST
+-----------------
+*** Constrained Movement
+    *** Player and enemy entities are constrained to moving within the bounds of the walls
+    *** Player is not required to have precise movements to navigate through tight spaces
+*** Collision Detection
+    *** Player and enemy entities cannot enter the same space as each other
+*** State-Based Behavior
+    *** Enemies enter state of peace when player is outside of enemy range
+    *** Enemies enter follow state when player enters range
+*** Reasonable Pathfinding
+    *** Enemy pathfinding uses Dijkstra's algorithm to find the shortest path to the player
+*** Player's Ability
+    *** Player entity is controlled by user using arrow keys to move
+    *** Player health decreases when coming in contact with an enemy
+    *** Collision detection with other collidable objects
+*** Enemy's Ability
+    *** Collision detection with player entity injures player
+    *** State-based movement behavior
+*** Game Attributes
+    *** Score shown to user at all times
+    *** Player has ability to finish each level
+    *** Two playable levels
