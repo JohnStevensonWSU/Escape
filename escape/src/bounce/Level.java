@@ -72,10 +72,10 @@ public class Level extends BasicGameState {
         eg.player.resetHealth();
         isStarted = false;
 
-        System.out.println(eg.difficulty);
         switch (eg.difficulty) {
           case "easy":
-            isFog = false;
+            isFog = true;
+            view = 7;
             break;
           case "medium":
             isFog = true;
